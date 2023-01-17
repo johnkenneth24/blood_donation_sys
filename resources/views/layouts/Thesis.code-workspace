@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Thesis"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"editor.cursorStyle": "line"
+	}
+}
