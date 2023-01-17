@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#landing nav{
+    background-color: #8B0000 !important;
+}
+
+#landing .navbar-collapse{
+    flex-grow: 0 !important;
+}       
+
+#landing nav h1{
+    font-size: 38px;
+    color: aqua;
+}
+
+#landing nav span{
+    color: #f7c324;
+}
+
+#landing nav .navbar-nav .nav-link{ 
+    color: #ffff !important;
+    margin: 0px 10px;
+
+}
+
+#landingHome{ 
+    height: 88.1vh;
+    background-image: url('../image/bg.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover; 
+}
+
+#landingHome .text-landing h1{
+    color: #8B0000;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+#landingHome .text-landing blockquote{
+    color: #000;
+    font-size: 2rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+#about{
+    height: 100vh;
+    background-color: #F5F5F5;
+}
+
+#login{
+    height: 88vh;
+    background-color: #F5F5F5;
+}
+
+#login .card-login{
+    background-color: #8B0000;
+    border-radius: 20px;
+    height: 500px;
+    width: 400px;
+    padding: 30px;
+}
+
+#login .card-login-header{
+    text-align: center;
+    color: #ffff;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
