@@ -35,8 +35,8 @@ class HomeController extends Controller
         return view('modules.landingpage.contact.contact');
     }
 
-    public function login()
+    public function dashboard()
     {
-        return view('auth.login');
+        return view('modules.dashboard');
     }
 }

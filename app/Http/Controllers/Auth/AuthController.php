@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -12,24 +14,31 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function store()
+    public function verify(Request $request)
     {
-        // Validate the user
-        $attributes = request()->validate([
-            'email' => ['required', 'email'],
+        $credentials = $request()->validate([
+            'username' => ['required'],
             'password' => ['required'],
         ]);
 
-        // Attempt to authenticate the user
-        if (auth()->attempt($attributes)) {
-            session()->regenerate();
-
-            return redirect('/')->with('success', 'Welcome Back!');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return Redirect::intended('dashboard');
+        } else {
+            return back()->withErrors([
+                'username' => 'The provided credentials is invalid!'
+            ])->onlyInput('username');
         }
 
-        // If not, redirect back
-        return back()
-            ->withInput()
-            ->withErrors(['email' => 'Your provided credentials could not be verified.']);
+        return back()->withInput()->withErrors(['email' => 'Your provided credentials could not be verified.']);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }

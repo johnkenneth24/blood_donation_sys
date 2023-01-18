@@ -13,13 +13,28 @@
                 </div>
                 <h1 class="login-header">SIGN IN TO YOUR ACCOUNT</h1>
                 <p class="text-center login-des">Only authorized personnel can log in!</p>
-                <div class="col-md-12">
-                    <input type="text" name="username" class="form-control" placeholder="Username" autofocus>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-                <button type="button" class="btn btn-outline-light mt-4 col-12">Log In</button>
+                <form action="{{ route('auth.verify') }}" method="POST">
+                    @csrf
+                    <div class="col-md-12">
+                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                            placeholder="Username" autofocus autocomplete="off" required>
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Password" required>
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-outline-light mt-4 col-12">Log In</button>
+                </form>
             </div>
         </div>
     </section>

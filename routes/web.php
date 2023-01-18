@@ -18,11 +18,13 @@ use App\Http\Controllers\Auth\AuthController;
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'landingHome'])->name('home');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/verify', [AuthController::class, 'store'])->name('auth.verify');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 });
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/dashboard', [HomeController::class, 'home'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
