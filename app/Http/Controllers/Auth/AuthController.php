@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function verify(Request $request)
     {
-        $credentials = $request()->validate([
+        $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
@@ -29,8 +29,6 @@ class AuthController extends Controller
                 'username' => 'The provided credentials is invalid!'
             ])->onlyInput('username');
         }
-
-        return back()->withInput()->withErrors(['email' => 'Your provided credentials could not be verified.']);
     }
 
     public function logout(Request $request)
