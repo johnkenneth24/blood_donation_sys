@@ -10,7 +10,9 @@
       <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <link rel="shortcut icon" href="{{ asset('images/blood-alt.png') }}" type="image/x-icon" />
+      <script src="https://kit.fontawesome.com/5d19900f91.js"crossorigin="anonymous"></script>
   </head>
 
   <body id="landing">
@@ -27,16 +29,16 @@
               <div class="collapse navbar-collapse" id="navbarText">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav justify-content-end">
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('home') }}">Home</a>
+                          <a class="nav-link" href="#landingHome">Home</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('about') }}">About</a>
+                          <a class="nav-link" href="#about">About</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('blog') }}">Blog</a>
+                          <a class="nav-link" href="#blog">Event & News</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                          <a class="nav-link" href="#contact">Contact</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="{{ route('login') }}">Log In</a>
