@@ -1,6 +1,6 @@
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
     <div class="brand flex-column-auto" id="kt_brand">
-        <a href="" class="brand-logo">
+        <a href="{{ route('admin-dashboard') }}" class="brand-logo">
             <img alt="Logo" class="w-95px" src="{{ asset('images/blood-drop.png') }}" />
         </a>
     </div>
