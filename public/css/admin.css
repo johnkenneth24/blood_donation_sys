@@ -1,0 +1,12 @@
+#kt_aside,
+#kt_aside_menu_wrapper,
+#kt_aside_menu,
+#kt_brand {
+  background: #8b0000;
+  color: white;
+}
+
+.menu-item .menu-link .menu-icon,
+.menu-text {
+  color: white !important;
+}

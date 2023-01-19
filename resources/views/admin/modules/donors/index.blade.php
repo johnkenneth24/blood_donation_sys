@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layout.app')
 
 @section('title')
-    Household
+    Donors
 @endsection
 
 @push('links')
@@ -15,19 +15,21 @@
         <div class="card-header">
             <div class="card-title">
                 <span class="card-icon">
-                    <i class="flaticon2-layers text-primary"></i>
+                    <i class="flaticon2-drop text-danger"></i>
                 </span>
-                <h3 class="card-label">Individual Column Search</h3>
+                <h3 class="card-label">Donors List</h3>
             </div>
             <div class="card-toolbar">
                 <!--begin::Dropdown-->
-                <div class="dropdown dropdown-inline mr-2">
-                    <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="la la-download"></i>Export</button>
+                {{-- <div class="dropdown dropdown-inline mr-2">
+                    <button type="button" class="btn btn-light-primary font-weight-bolder dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="la la-download"></i>Export</button>
                     <!--begin::Dropdown Menu-->
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                         <ul class="nav flex-column nav-hover">
-                            <li class="nav-header font-weight-bolder text-uppercase text-primary pb-2">Choose an option:</li>
+                            <li class="nav-header font-weight-bolder text-uppercase text-primary pb-2">Choose an option:
+                            </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon la la-print"></i>
@@ -61,50 +63,49 @@
                         </ul>
                     </div>
                     <!--end::Dropdown Menu-->
-                </div>
+                </div> --}}
                 <!--end::Dropdown-->
-                <!--begin::Button-->
-                <a href="#" class="btn btn-primary font-weight-bolder">
-                <i class="la la-plus"></i>New Record</a>
-                <!--end::Button-->
+                <a href="{{ route('donors.create') }}" class="btn btn-danger font-weight-bolder">
+                    <i class="flaticon2-drop"></i><i class="la la-plus"></i>New Record</a>
             </div>
         </div>
         <div class="card-body">
-            <!--begin: Datatable-->
             <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
                 <thead>
                     <tr>
-                        <th>Record ID</th>
-                        <th>Order ID</th>
-                        <th>Country</th>
-                        <th>Ship City</th>
-                        <th>Company Agent</th>
-                        <th>Ship Date</th>
-                        <th>Status</th>
-                        <th>Type</th>
+                        <th>#</th>
+                        <th>Fullname</th>
+                        <th>Address</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Blood Type</th>
+                        <th>Contact No.</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr>
-                        <th>Record ID</th>
-                        <th>Order ID</th>
-                        <th>Country</th>
-                        <th>Ship City</th>
-                        <th>Company Agent</th>
-                        <th>Ship Date</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr>
+                    @forelse ($donors as $donor)
+                        <tr>
+                            <th>#</th>
+                            <th>Fullname</th>
+                            <th>Address</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Blood Type</th>
+                            <th>Contact No.</th>
+                            <th>Actions</th>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">No records found.</td>
+                        </tr>
+                    @endforelse
                 </tfoot>
             </table>
-            <!--end: Datatable-->
         </div>
     </div>
 @endsection
 
 @push('scripts')
     @livewireScripts
-
 @endpush

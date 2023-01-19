@@ -12,9 +12,8 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style1.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="{{ asset('assets/images/st_trese.png') }}" />
-
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{{ asset('images/blood-alt.png') }}" />
 
     <style>
         [x-cloak] {
@@ -36,7 +35,7 @@
                             @section('content') @show
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -102,14 +101,14 @@
     </script>
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script> 
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <script>
         var URL = '{{ config('app.url') }}'
     </script>
     @stack('scripts')
 
     <script src="{{ mix('js/app.js') }}"></script>
-     
+
     <script>
         if (window.livewire) {
             window.livewire.on('hideModal', (modalId) => {
