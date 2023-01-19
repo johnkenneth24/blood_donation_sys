@@ -4,6 +4,9 @@
     Admin | Dashboard
 @endsection
 
-@section('content') 
-  dashboard
+@section('content')
+    dashboard didi kunyare
+    <div class="text-center bdy">
+        yeah boi
+    </div>
 @endsection

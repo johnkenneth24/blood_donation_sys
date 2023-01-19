@@ -104,3 +104,11 @@
   width: 90%;
   font-size: 23px;
 }
+
+.invalid-feedback {
+  color: white;
+}
+
+#authlog span.invalid-feedback {
+  color: white !important;
+}
