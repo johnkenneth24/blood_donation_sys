@@ -101,3 +101,13 @@
     width: 90%;
     font-size: 23px;
 }
+
+#blog{
+    height: 87vh;
+    background-color: #F5F5F5;
+}
+
+#contact{
+    height: 87vh;
+    background-color: #F5F5F5;
+}
