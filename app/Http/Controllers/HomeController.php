@@ -17,26 +17,21 @@ class HomeController extends Controller
 
     public function landingHome()
     {
-        return view('modules.landingpage.home.home');
+        return view('modules.home.home');
     }
 
     public function about()
     {
-        return view('modules.landingpage.about.about');
+        return view('modules.about.about');
     }
 
     public function blog()
     {
-        return view('modules.landingpage.blog.blog');
+        return view('modules.blog.blog');
     }
 
     public function contact()
     {
-        return view('modules.landingpage.contact.contact');
-    }
-
-    public function dashboard()
-    {
-        return view('modules.dashboard');
+        return view('modules.contact.contact');
     }
 }

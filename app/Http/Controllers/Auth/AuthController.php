@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return Redirect::intended('dashboard');
+            return Redirect::intended('admin-dashboard');
         } else {
             return back()->withErrors([
                 'username' => 'The provided credentials is invalid!'

@@ -6,7 +6,7 @@
 
 @section('content')
     <section id="login" class="container-fluid d-flex justify-content-center align-items-center">
-        <div class="row card-login d-flex justify-content-center align-items-center">
+        <div class="row card-login d-flex justify-content-center align-items-center" id="authlog">
             <div class="card-auth">
                 <div class="text-center">
                     <img src="{{ asset('images/blood-drop.png') }}" alt="logo" height="100px" class="text-center">
