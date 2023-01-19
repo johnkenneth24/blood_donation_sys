@@ -87,10 +87,10 @@
                         <i class="fas fa-phone"></i><span class="ms-3">0909-428-9335</span>
                     </div>
                     <div class="info">
-                        <i class="fas fa-envelope"> </i><span class="ms-3">icahgloriane@gmail.com</span>
+                        <i class="fas fa-envelope"> </i><span class="ms-3">rhu_irosindistrict@gmail.com</span>
                     </div>
                     <div class="info">
-                        <i class="fas fa-map-marker-alt"> </i><span class="ms-3">Jamorawon Bulan, Sorsogon</span>
+                        <i class="fas fa-map-marker-alt"> </i><span class="ms-3">Irosin Rural Health Unit, Irosin, Sorsogon</span>
                     </div>
                 </div>
             </div>
