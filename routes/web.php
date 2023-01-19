@@ -27,6 +27,10 @@ Route::middleware('auth')->group(function () {
         ], function () {
             Route::get('/', 'index')->name('donors.index');
             Route::get('/create', 'create')->name('donors.create');
+            Route::get('/edit', 'edit')->name('donors.edit');
+            Route::post('/store', 'store')->name('donors.store');
+            Route::put('/update', 'update')->name('donors.update');
+            ROute::get('/show/{id}', 'show')->name('donors.show');
         });
     });
 });
