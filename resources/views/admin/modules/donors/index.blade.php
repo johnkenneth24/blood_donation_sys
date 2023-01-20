@@ -1,5 +1,7 @@
 @extends('admin.layout.app')
 
+@section('title', 'Donors')
+
 @section('content')
     @livewireStyles
     @livewire('donor.show-donors')

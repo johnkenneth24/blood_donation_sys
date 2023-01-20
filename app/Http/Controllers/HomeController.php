@@ -2,36 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Household;
-use App\Models\Incident;
-use App\Models\Complaint;
-use Termwind\Components\Dd;
+use App\Http\Requests\RegisterDonor\StoreRequest;
+use App\Models\Event;
 
 class HomeController extends Controller
 {
-    public function home()
-    {
-        return view('modules.landingpage.index');
-    }
+    // public function home()
+    // {
+    //     return view('modules.home.home');
+    // }
 
     public function landingHome()
     {
-        return view('modules.home.home');
+        $bloodtypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'I dont know'];
+        $gender = ['Male', 'Female', 'Prefer not to say'];
+
+        $events = Event::orderBy('date', 'desc')->paginate(3);
+
+        return view('modules.home.home', compact('bloodtypes', 'gender', 'events'));
     }
 
-    public function about()
+    public function register(StoreRequest $request)
     {
-        return view('modules.about.about');
-    }
+        $validated = $request->validated();
+        dd($validated);
 
-    public function blog()
-    {
-        return view('modules.blog.blog');
-    }
-
-    public function contact()
-    {
-        return view('modules.contact.contact');
+        return redirect()->route('home');
     }
 }
