@@ -89,7 +89,7 @@
         </div>
     </div>
     <section id="contact" class="container-fluid d-flex flex-wrap">
-        <div class="col-md-5 d-flex flex-column align-items-center justify-content-center">
+        <div class="col-md-5 d-flex flex-column">
             <div class="des-contact">
                 <h1>RHU IROSIN</h1>
                 <p>Below are the contact information:</p>

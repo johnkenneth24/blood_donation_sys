@@ -15,18 +15,19 @@
                         <span class="menu-text">Home</span>
                     </a>
                 </li>
-                <li class="menu-item {{ !request()->routeIs('donors.*') ?: 'menu-item-active' }}" aria-haspopup="true">
-                    <a href="{{ route('donors.index') }}" class="menu-link">
-                        <i class="menu-icon flaticon2-drop"></i>
-                        <span class="menu-text">Donors</span>
-                    </a>
-                </li>
                 <li class="menu-item {{ !request()->routeIs('pending.*') ?: 'menu-item-active' }}" aria-haspopup="true">
                     <a href="{{ route('pending.index') }}" class="menu-link">
+                        <i class="menu-icon  flaticon2-drop"></i>
+                        <span class="menu-text text-nowrap">Donors</span>
+                    </a>
+                </li>
+                <li class="menu-item {{ !request()->routeIs('donors.*') ?: 'menu-item-active' }}" aria-haspopup="true">
+                    <a href="{{ route('donors.index') }}" class="menu-link">
                         <i class="menu-icon flaticon2-calendar-3"></i>
                         <span class="menu-text text-nowrap">Pending Donors</span>
                     </a>
                 </li>
+                
 
                 <li class="menu-item {{ !request()->routeIs('events.*') ?: 'menu-item-active' }}" aria-haspopup="true">
                     <a href="{{ route('events.index') }}" class="menu-link">
@@ -40,13 +41,7 @@
                         <i class="menu-icon flaticon2-document"></i>
                         <span class="menu-text">Reports</span>
                     </a>
-                </li>
-                <li class="menu-item {{-- !request()->routeIs('report.*') ?: 'menu-item-active' --}}" aria-haspopup="true">
-                    <a href="{{-- route('report.index') --}}" class="menu-link">
-                        <i class="menu-icon flaticon2-open-box"></i>
-                        <span class="menu-text text-nowrap">Blood Bank</span>
-                    </a>
-                </li>
+                </li> 
                 <li class="menu-item {{-- !request()->routeIs('trashbin') ?: 'menu-item-active' --}}" aria-haspopup="true">
                     <a href="{{-- route('trashbin.index') --}}" class="menu-link">
                         <i class="menu-icon flaticon2-user-1"></i>
