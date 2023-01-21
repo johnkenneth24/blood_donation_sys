@@ -29,13 +29,10 @@ class StoreRequest extends FormRequest
             'middlename' => ['nullable'],
             'email' => ['required', 'email'],
             'address' => ['required'],
-            'contact_no' => ['required'],
+            'contact_no' => ['required', 'min:10', 'max:15'],
             'blood_type' => ['nullable'],
             'gender' => ['required'],
-            // 'age' => ['required'],
             'bdate' => ['required'],
-            'terms' => ['required', 'boolean'],
-            'status' => ['required'],
         ];
     }
 
@@ -49,10 +46,7 @@ class StoreRequest extends FormRequest
             'address.required' => 'Address is required',
             'contact_no.required' => 'Contact number is required',
             'gender.required' => 'Gender is required',
-            // 'age.required' => 'Age is required',
             'bdate.required' => 'Birthdate is required',
-            'terms.required' => 'Terms and conditions is required',
-            'terms.boolean' => 'Terms and conditions must be a boolean value',
             'status.required' => 'Status is required',
         ];
     }

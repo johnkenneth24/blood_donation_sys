@@ -13,6 +13,14 @@
                 <div class="row justify-content-center mt-5">
                     <div class="col-md-10">
                         <div class="form-group">
+                            <label class="font-weight-bold">Email<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror "
+                                name="email" placeholder="Enter email" wire:model="email" />
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label class="font-weight-bold">First Name<span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('firstname') is-invalid @enderror "
                                 name="firstname" placeholder="Enter First Name" wire:model="firstname" />
@@ -37,10 +45,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bold">Age <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control @error('age') is-invalid @enderror "
-                                name="age" placeholder="Enter Age" wire:model="age" />
-                            @error('age')
+                            <label class="font-weight-bold">Birthdate <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control @error('bdate') is-invalid @enderror "
+                                name="bdate" placeholder="Enter Birthday" wire:model="bdate" />
+                            @error('bdate')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -67,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Contact No.</label>
-                            <input type="text" class="form-control @error('contact_no') is-invalid @enderror "
+                            <input type="number" class="form-control @error('contact_no') is-invalid @enderror "
                                 name="contact_no" placeholder="Enter contact no." wire:model="contact_no" />
                             @error('contact_no')
                                 <span class="text-danger">{{ $message }}</span>
@@ -75,10 +83,20 @@
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Blood Type</label>
-                            <input type="text" name="bloodtype"
-                                class="form-control @error('bloodtype') is-invalid @enderror" wire:model="bloodtype"
-                                placeholder="Enter blood type (e.g. A+, B-, AB+, O-, etc)" />
-                            @error('bloodtype')
+                            <select name="blood_type" class="form-control @error('blood_type') is-invalid @enderror"
+                                wire:model="blood_type" required>
+                                <option value="">Choose your blood type</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="IDK">I don't know</option>
+                            </select>
+                            @error('blood_type')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

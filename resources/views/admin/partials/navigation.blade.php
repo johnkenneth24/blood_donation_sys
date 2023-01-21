@@ -15,14 +15,16 @@
                         <span class="menu-text">Home</span>
                     </a>
                 </li>
-                <li class="menu-item {{ !request()->routeIs('donor.*') ?: 'menu-item-active' }}" aria-haspopup="true">
+                <li class="menu-item {{ !request()->routeIs('donor.index') ?: 'menu-item-active' }}"
+                    aria-haspopup="true">
                     <a href="{{ route('donor.index') }}" class="menu-link">
                         <i class="menu-icon  flaticon2-drop"></i>
                         <span class="menu-text text-nowrap">Donors</span>
                     </a>
                 </li>
-                <li class="menu-item {{ !request()->routeIs('pending.*') ?: 'menu-item-active' }}" aria-haspopup="true">
-                    <a href="{{ route('pending.index') }}" class="menu-link">
+                <li class="menu-item {{ !request()->routeIs('donor.pending') ?: 'menu-item-active' }}"
+                    aria-haspopup="true">
+                    <a href="{{ route('donor.pending') }}" class="menu-link">
                         <i class="menu-icon flaticon2-calendar-3"></i>
                         <span class="menu-text text-nowrap">Pending Donors</span>
                     </a>

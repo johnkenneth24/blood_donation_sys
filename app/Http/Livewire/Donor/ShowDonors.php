@@ -14,7 +14,7 @@ class ShowDonors extends Component
     public $gender;
     public $contact_no;
     public $address;
-    public $bloodtype;
+    public $blood_type;
     public $donor_id;
 
     protected $listeners = ['delete'];
@@ -27,7 +27,7 @@ class ShowDonors extends Component
         'gender' => 'required',
         'contact_no' => 'required',
         'address' => 'required',
-        'bloodtype' => 'nullable',
+        'blood_type' => 'nullable',
     ];
 
     public function resetInputFields()
@@ -39,7 +39,7 @@ class ShowDonors extends Component
         $this->gender = '';
         $this->contact_no = '';
         $this->address = '';
-        $this->bloodtype = '';
+        $this->blood_type = '';
     }
 
     public function edit($id)
@@ -54,7 +54,7 @@ class ShowDonors extends Component
         $this->gender = $donor->gender;
         $this->contact_no = $donor->contact_no;
         $this->address = $donor->address;
-        $this->bloodtype = $donor->bloodtype;
+        $this->blood_type = $donor->blood_type;
     }
 
     public function store()
@@ -70,7 +70,7 @@ class ShowDonors extends Component
             'gender' => $this->gender,
             'contact_no' => $this->contact_no,
             'address' => $this->address,
-            'bloodtype' => $this->bloodtype,
+            'blood_type' => $this->blood_type,
         ]);
 
         $this->resetInputFields();
@@ -92,7 +92,7 @@ class ShowDonors extends Component
             'gender' => $this->gender,
             'contact_no' => $this->contact_no,
             'address' => $this->address,
-            'bloodtype' => $this->bloodtype,
+            'blood_type' => $this->blood_type,
         ]);
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
@@ -114,13 +114,13 @@ class ShowDonors extends Component
         if ($donor != null) {
             $donor->delete();
             // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
-            return redirect()->route('donors.index')->with('success', 'You have successfully deleted a Donor record');
+            return redirect()->route('donor.index')->with('success', 'You have successfully deleted a Donor record');
         }
     }
 
     public function render()
     {
-        $donors = Donor::sortable()->orderBy('lastname', 'asc')->paginate(10);
+        $donors = Donor::where('status', 'donated')->sortable()->orderBy('lastname', 'asc')->paginate(10);
         return view('livewire.donor.show-donor', compact('donors'));
     }
 }

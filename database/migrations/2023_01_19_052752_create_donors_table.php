@@ -12,13 +12,17 @@ return new class extends Migration
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
-            $table->string('middlename')->nullable();
             $table->string('lastname');
-            $table->string('age');
-            $table->string('gender');
+            $table->string('middlename')->nullable();
+            $table->string('email');
             $table->string('address');
             $table->string('contact_no');
-            $table->string('bloodtype')->nullable();
+            $table->string('blood_type')->nullable();
+            $table->string('gender');
+            $table->string('age');
+            $table->string('bdate');
+            $table->string('status')->default('pending');
+            $table->string('bag_blood')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
