@@ -13,9 +13,9 @@
             </div>
 
             @php
-            $upcoming = App\Models\Event::where('date', '>=', date('Y-m-d'))
-                ->orderBy('date', 'asc')
-                ->paginate(3);
+                $upcoming = App\Models\Event::where('date', '>=', date('Y-m-d'))
+                    ->orderBy('date', 'asc')
+                    ->paginate(3);
             @endphp
             <div class="card card-custom gutter-b">
                 <div class="card-header p-0 pt-2">
@@ -24,23 +24,25 @@
                             <i class="flaticon2-chat-1 text-primary"></i>
                         </span>
                         @if (count($upcoming) > 0)
-                        <h6 class="card-label mb-0">
-                            UPCOMMING EVENT ({{ count($upcoming) }})
-                        </h6>
-                    </div> 
+                            <h6 class="card-label mb-0">
+                                UPCOMMING EVENT ({{ count($upcoming) }})
+                            </h6>
+                    </div>
                 </div>
                 <div class="card-body">
                     <ul>
                         @foreach ($upcoming as $event)
                             <li class="text-wrap">{{ $event->title }} will be held on
-                                {{ date('F d, Y', strtotime($event->date)) }}. <a class="fst-italic" href="{{ route('register.index') }}">Register Here!</a>
+                                {{ date('F d, Y', strtotime($event->date)) }}. <a class="fst-italic"
+                                    href="{{ route('register.index') }}">Register Here!</a>
                             </li>
                         @endforeach
                     </ul>
                     @endif
                 </div>
-                <div class="card-footer d-flex justify-content-between"> 
-                    <p class="mb-0 fs-6">Please check the <a href="#blog" class="text-success">list of events for more details</a>.</p>
+                <div class="card-footer d-flex justify-content-between">
+                    <p class="mb-0 fs-6">Please check the <a href="#blog" class="text-success">list of events for more
+                            details</a>.</p>
                 </div>
             </div>
 
@@ -121,135 +123,27 @@
             </div>
         </div>
         <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
-            {{-- <div class="card text-bg-danger mb-3">
+            <div class="card card-custom w-100">
                 <div class="card-body">
-                    <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5>
-                    <p class="card-text">After you submit the form you need to go to the RHU for further assessment and
-                        validation.</p>
-                    <form action="{{ route('register-donor') }}" method="post" class="row g-3">
-                        @csrf
-                        <div class="col-md-6">
-                            <label class="form-label">Email <span>*</span></label>
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                title="Must be a valid active email address" placeholder="example@email.com"
-                                value="{{ old('email') }}" required>
-                            @error('email')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                    <form action="mailto:rhu_irosindistrict@gmail.com" target="_blank">
+                    <h5 class="card-title">Send us your enquiries</h5>
+                        <div class="mb-3">
+                            <label   class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control"   aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Address <span>*</span></label>
-                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
-                                required placeholder="Barangay, Municipality, Province" value="{{ old('address') }}">
-                            @error('address')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name"  aria-describedby="emailHelp"> 
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Firt Name <span>*</span></label>
-                            <input type="text" class="form-control @error('firstname') is-invalid @enderror"
-                                name="firstname" required placeholder="Juan" value="{{ old('firstname') }}">
-                            @error('firstname')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Middle Name</label>
-                            <input type="text" class="form-control @error('middlename') is-invalid @enderror"
-                                name="middlename" placeholder="Dela" value="{{ old('middlename') }}">
-                            @error('middlename')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Last Name <span>*</span></label>
-                            <input type="text" class="form-control @error('lastname') is-invalid @enderror"
-                                name="lastname" required placeholder="Cruz" value="{{ old('lastname') }}">
-                            @error('lastname')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Blood Type <span>*</span></label>
-                            <select class="form-select @error('blood_type') is-invalid @enderror" name="blood_type">
-                                <option value="">--Please Select--</option>
-                                @foreach ($bloodtypes as $bloodtype)
-                                    <option value="{{ $bloodtype }}" @selected(old('blood_type') == $bloodtype)>{{ $bloodtype }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('blood_type')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Gender <span>*</span></label>
-                            <select class="form-select @error('gender')  is-invalid @enderror" name="gender">
-                                <option value="">--Please Select--</option>
-                                @foreach ($gender as $gndr)
-                                    <option value="{{ $gndr }}" @selected(old('gender') == $gndr)>{{ $gndr }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('gender')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Birthdate <span>*</span></label>
-                            <input type="date" name="bdate"
-                                class="bdate form-control @error('bdate') is-invalid @enderror" placeholder="dd/mm/yyyy"
-                                required value="{{ old('bdate') }}" id="bdate">
-                            @error('bdate')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Mobile No. <span>*</span></label>
-                            <input type="number" name="contact_no"
-                                class="form-control @error('contact_no') is-invalid @enderror"
-                                value="{{ old('contact_no') }}" placeholder="0912345xxxx">
-                            @error('contact_no')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" name="terms" type="checkbox" value="true" checked
-                                    id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    I agree to the <a href="#" class="text-white">terms and
-                                        conditions</a>.
-                                    <span>*</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="col-md-12 btn btn-light">SUBMIT</button>
-                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                          </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </section>
 @endsection
