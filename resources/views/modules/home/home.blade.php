@@ -67,12 +67,12 @@
             </div>
         </div>
     </section>
-    <section id="blog" class="container-fluid d-flex justify-content-start align-items-center">
-        <div class="row">
-            @foreach ($events as $event)
+    @forelse ($events as $event)
+        <section id="blog" class="container-fluid d-flex justify-content-start align-items-center">
+            <div class="row">
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ asset('image/about.png') }}" class="card-img-top" alt="...">
+                        <img src="/image/{{ $event->image }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $event->author }} |
@@ -86,19 +86,23 @@
                                 @endif
                             </h6>
                             <p class="card-text">{{ $event->description }}</p>
-                            <a href="">Read More...</a>
+                            <a href="#">Read More...</a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            </div>
+        </section>
+        <div class="row pagination">
+            <div class="justify-content-center d-flex">
+                {{ $events->links() }}
+            </div>
         </div>
+    @empty
+        <div class="row justify-content-center d-flex">
+            <h1 class="text-muted" style="text-align: center !important;">Events are shown here.</h1>
+        </div>
+    @endforelse
 
-    </section>
-    <div class="row pagination">
-        <div class="justify-content-center d-flex">
-            {{ $events->links() }}
-        </div>
-    </div>
     <section id="contact" class="container-fluid d-flex flex-wrap align-items-center">
         <div class="col-md-6 ps-5">
             <div class="des-contact">
