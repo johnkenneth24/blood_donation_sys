@@ -109,22 +109,28 @@
   color: white;
 }
 
-<<<<<<< HEAD
-#about p{
-    width: 90%;
-    font-size: 23px;
+#about p {
+  width: 90%;
+  font-size: 23px;
 }
 
-#blog{
-    height: 87vh;
-    background-color: #F5F5F5;
+#blog {
+  height: 87vh;
+  background-color: #f5f5f5;
 }
 
-#contact{
-    height: 87vh;
-    background-color: #F5F5F5;
-=======
+#contact {
+  height: 87vh;
+  background-color: #f5f5f5;
+}
+
 #authlog span.invalid-feedback {
   color: white !important;
->>>>>>> main
+}
+
+.card-image-modify {
+  max-height: 300px;
+  min-height: 300px;
+  object-fit: cover;
+  overflow: hidden;
 }

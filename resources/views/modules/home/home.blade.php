@@ -25,7 +25,7 @@
                         </span>
                         @if (count($upcoming) > 0)
                             <h6 class="card-label mb-0">
-                                UPCOMING EVENT ({{ count($upcoming) }})
+                                UPCOMING EVENT/S ({{ count($upcoming) }})
                             </h6>
                     </div>
                 </div>
@@ -45,8 +45,6 @@
                             details</a>.</p>
                 </div>
             </div>
-
-
 
         </div>
     </section>
@@ -71,10 +69,11 @@
     </section>
     <section id="blog" class="container-fluid d-flex justify-content-start align-items-center">
         <div class="row">
-            @foreach ($events as $event)
+            @forelse ($events as $event)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ asset('image/about.png') }}" class="card-img-top" alt="...">
+                        <img src="/image/{{ $event->image }}" class="card-img-top card-image-modify img-fluid"
+                            alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $event->author }} |
@@ -88,19 +87,23 @@
                                 @endif
                             </h6>
                             <p class="card-text">{{ $event->description }}</p>
-                            <a href="">Read More...</a>
+                            <a href="#">Read More...</a>
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="row justify-content-center d-flex">
+                    <h1 class="text-muted" style="text-align: center !important;">Events are shown here.</h1>
+                </div>
+            @endforelse
         </div>
-
     </section>
     <div class="row pagination">
         <div class="justify-content-center d-flex">
             {{ $events->links() }}
         </div>
     </div>
+
     <section id="contact" class="container-fluid d-flex flex-wrap align-items-center">
         <div class="col-md-6 ps-5">
             <div class="des-contact">
@@ -126,20 +129,20 @@
             <div class="card card-custom w-100">
                 <div class="card-body">
                     <form action="mailto:rhu_irosindistrict@gmail.com" target="_blank">
-                    <h5 class="card-title">Send us your enquiries</h5>
+                        <h5 class="card-title">Send us your enquiries</h5>
                         <div class="mb-3">
-                            <label   class="form-label">Email Address</label>
-                            <input type="email" name="email" class="form-control"   aria-describedby="emailHelp">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name"  aria-describedby="emailHelp"> 
+                            <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                             <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
-                          </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>

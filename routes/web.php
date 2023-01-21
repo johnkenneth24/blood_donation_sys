@@ -5,10 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\Auth\AuthController; 
-use App\Http\Controllers\PendingController; 
-use App\Http\Controllers\RegisterDonorController; 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PendingController;
 use App\Http\Controllers\RegDonorController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\RegisterDonorController;
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'landingHome'])->name('home');
@@ -41,16 +43,16 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(DonorController::class)->group(function () {
         Route::group([
-            'prefix' => 'donors'
+            'prefix' => 'donor'
         ], function () {
-            Route::get('/', 'index')->name('donors.index');
-            Route::get('/create', 'create')->name('donors.create');
-            Route::get('/edit', 'edit')->name('donors.edit');
-            Route::post('/store', 'store')->name('donors.store');
-            Route::put('/update', 'update')->name('donors.update');
-            ROute::get('/show/{id}', 'show')->name('donors.show');
+            Route::get('/', 'index')->name('donor.index');
+            Route::get('/create', 'create')->name('donor.create');
+            Route::get('/edit', 'edit')->name('donor.edit');
+            Route::post('/store', 'store')->name('donor.store');
+            Route::put('/update', 'update')->name('donor.update');
+            ROute::get('/show/{id}', 'show')->name('donor.show');
         });
-    }); 
+    });
     Route::controller(PendingController::class)->group(function () {
         Route::group([
             'prefix' => 'pending'
@@ -62,32 +64,30 @@ Route::middleware('auth')->group(function () {
             Route::put('/update', 'update')->name('pending.update');
             ROute::get('/show/{id}', 'show')->name('pending.show');
         });
-    }); 
+    });
     Route::controller(EventController::class)->group(function () {
         Route::group([
             'prefix' => 'events'
         ], function () {
             Route::get('/', 'index')->name('events.index');
             Route::get('/create', 'create')->name('events.create');
-            Route::get('/edit', 'edit')->name('events.edit');
+            Route::get('/edit/{id}', 'edit')->name('events.edit');
             Route::post('/store', 'store')->name('events.store');
-            Route::put('/update', 'update')->name('events.update');
+            Route::put('/update/{id}', 'update')->name('events.update');
             Route::get('/show/{id}', 'show')->name('events.show');
         });
     });
 
-    
-
-    // Route::controller(RegisterDonorController::class)->group(function () {
-    //     Route::group([
-    //         'prefix' => 'register-donor'
-    //     ], function () {
-    //         Route::get('/', 'index')->name('register-donor.index');
-    //         Route::get('/create', 'create')->name('register-donor.create');
-    //         Route::get('/edit', 'edit')->name('register-donor.edit');
-    //         // Route::post('/store', 'store')->name('register-donor.store');
-    //         Route::put('/update', 'update')->name('register-donor.update');
-    //         Route::get('/show/{id}', 'show')->name('register-donor.show');
-    //     });
-    // }); 
+    Route::controller(UsersController::class)->group(function () {
+        Route::group([
+            'prefix' => 'users'
+        ], function () {
+            Route::get('/', 'index')->name('users.index');
+            Route::get('/create', 'create')->name('users.create');
+            Route::get('/edit/{id}', 'edit')->name('users.edit');
+            Route::post('/store', 'store')->name('users.store');
+            Route::put('/update/{id}', 'update')->name('users.update');
+            Route::get('/show/{id}', 'show')->name('users.show');
+        });
+    });
 });
