@@ -11,30 +11,41 @@
                 <h1 class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
                 <blockquote class="text-center">"Let's Come to Donate Blood"</blockquote>
             </div>
-            <div>
-                @php
-                    $upcoming = App\Models\Event::where('date', '>=', date('Y-m-d'))
-                        ->orderBy('date', 'asc')
-                        ->paginate(3);
-                @endphp
-                @if (count($upcoming) > 0)
-                    <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">Upcoming Events ({{ count($upcoming) }})</h4>
-                        {{-- <p>There are {{ count($upcoming) }} upcoming events. Please check the list below.</p> --}}
-                        <hr>
-                        <ul>
-                            @foreach ($upcoming as $event)
-                                <li class="fw-bold">{{ $event->title }} will be held on
-                                    {{ date('F d, Y', strtotime($event->date)) }}
-                                </li>
-                            @endforeach
-                        </ul>
-                        <hr>
-                        <p class="mb-0">Please check the <a href="#blog" class="text-success">list of events for more
-                                details</a>.</p>
-                    </div>
-                @endif
+
+            @php
+            $upcoming = App\Models\Event::where('date', '>=', date('Y-m-d'))
+                ->orderBy('date', 'asc')
+                ->paginate(3);
+            @endphp
+            <div class="card card-custom gutter-b">
+                <div class="card-header p-0 pt-2">
+                    <div class="card-title">
+                        <span class="card-icon">
+                            <i class="flaticon2-chat-1 text-primary"></i>
+                        </span>
+                        @if (count($upcoming) > 0)
+                        <h6 class="card-label mb-0">
+                            UPCOMMING EVENT ({{ count($upcoming) }})
+                        </h6>
+                    </div> 
+                </div>
+                <div class="card-body">
+                    <ul>
+                        @foreach ($upcoming as $event)
+                            <li class="text-wrap">{{ $event->title }} will be held on
+                                {{ date('F d, Y', strtotime($event->date)) }}. <a class="fst-italic" href="{{ route('register.index') }}">Register Here!</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </div>
+                <div class="card-footer d-flex justify-content-between"> 
+                    <p class="mb-0 fs-6">Please check the <a href="#blog" class="text-success">list of events for more details</a>.</p>
+                </div>
             </div>
+
+
+
         </div>
     </section>
     <section id="about" class="container-fluid d-flex justify-content-center align-items-center">
@@ -59,7 +70,7 @@
     @forelse ($events as $event)
         <section id="blog" class="container-fluid d-flex justify-content-start align-items-center">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <img src="/image/{{ $event->image }}" class="card-img-top" alt="...">
                         <div class="card-body">
@@ -92,29 +103,29 @@
         </div>
     @endforelse
 
-    <section id="contact" class="container-fluid d-flex flex-wrap">
-        <div class="col-md-5 d-flex flex-column">
+    <section id="contact" class="container-fluid d-flex flex-wrap align-items-center">
+        <div class="col-md-6 ps-5">
             <div class="des-contact">
-                <h1>RHU IROSIN</h1>
-                <p>Below are the contact information:</p>
+                <h1 class="text-danger"><i class="fas fa-map-marker-alt"> </i> RHU IROSIN</h1>
+                <p class="mt-4">Below are the contact information:</p>
             </div>
-            <div class="contact row">
+            <div class="contact row ">
                 <div class="contact-info">
-                    <div class="info">
+                    <div class="info mb-3">
                         <i class="fas fa-phone"></i><span class="ms-3">0909-428-9335</span>
                     </div>
-                    <div class="info">
+                    <div class="info mb-3">
                         <i class="fas fa-envelope"> </i><span class="ms-3">rhu_irosindistrict@gmail.com</span>
                     </div>
-                    <div class="info">
+                    <div class="info mb-3">
                         <i class="fas fa-map-marker-alt"> </i><span class="ms-3">Irosin Rural Health Unit, Irosin,
                             Sorsogon</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-7 d-flex justify-content-center align-items-center flex-column">
-            <div class="card text-bg-danger mb-3">
+        <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
+            {{-- <div class="card text-bg-danger mb-3">
                 <div class="card-body">
                     <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5>
                     <p class="card-text">After you submit the form you need to go to the RHU for further assessment and
@@ -242,7 +253,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
 @endsection
