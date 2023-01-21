@@ -24,7 +24,7 @@
                 <li class="menu-item {{ !request()->routeIs('pending.*') ?: 'menu-item-active' }}" aria-haspopup="true">
                     <a href="{{ route('pending.index') }}" class="menu-link">
                         <i class="menu-icon flaticon2-calendar-3"></i>
-                        <span class="menu-text text-nowrap">Pending <br> Donors</span>
+                        <span class="menu-text text-nowrap">Pending Donors</span>
                     </a>
                 </li>
 

@@ -68,12 +68,14 @@
         </div>
     </section>
     <section id="blog" class="container-fluid d-flex justify-content-start align-items-center">
+        @php
+            use Illuminate\Support\Str;
+        @endphp
         <div class="row">
             @forelse ($events as $event)
                 <div class="col-md-3">
-                    <div class="card">
-                        <img src="/image/{{ $event->image }}" class="card-img-top card-image-modify img-fluid"
-                            alt="...">
+                    <div class="card card-custom">
+                        <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $event->author }} |
@@ -86,7 +88,7 @@
                                     <span class="badge bg-primary">Upcoming</span>
                                 @endif
                             </h6>
-                            <p class="card-text">{{ $event->description }}</p>
+                            <p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
                             <a href="#">Read More...</a>
                         </div>
                     </div>
