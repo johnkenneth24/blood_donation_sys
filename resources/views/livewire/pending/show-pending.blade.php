@@ -6,8 +6,8 @@
     <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
             <span class="card-label font-weight-bolder font-size-h1 text-dark">
-                <i class="flaticon2-drop text-danger font-size-h1"></i>Pending Donors List</span>
-            <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage pending donor details here</span>
+                <i class="flaticon2-drop text-danger font-size-h1"></i>Donors List</span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage donor details here</span>
         </h3>
         {{-- <div class="card-toolbar">
             <a href="#" class="btn btn-danger font-weight-bolder font-size-sm" data-toggle="modal"

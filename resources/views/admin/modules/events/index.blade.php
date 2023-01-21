@@ -4,6 +4,7 @@
 
 @section('content')
     @livewireStyles
+    
     <div class="card card-custom gutter-b">
         <x-errors></x-errors>
         <x-success></x-success>

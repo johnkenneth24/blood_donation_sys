@@ -6,8 +6,8 @@
     <div class="card-header border-0 py-5">
         <h3 class="card-title align-items-start flex-column">
             <span class="card-label font-weight-bolder font-size-h1 text-dark">
-                <i class="flaticon2-drop text-danger font-size-h1"></i> Donors List</span>
-            <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage donor details here</span>
+                <i class="flaticon2-drop text-danger font-size-h1"></i>Pending Donors List</span>
+            <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage pending donor details here</span>
         </h3>
         <div class="card-toolbar">
             <a href="#" class="btn btn-danger font-weight-bolder font-size-sm" data-toggle="modal"
@@ -49,14 +49,14 @@
                                 {{ $donor->bloodtype }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->contact_no }}</td>
-                            <td class="pr-0 text-right">
-                                <a href="#" class="btn btn-sm btn-primary mr-1"
+                            <td class="pr-0  text-right">
+                                <a href="#" class="btn btn-sm  mr-1"
                                     wire:click='edit({{ $donor->id }})' data-target="#edit" data-toggle="modal">
-                                    <span><i class="fa fa-edit" aria-hidden="true"></i></span>EDIT
+                                    <span><i class="fa text-primary fa-edit" aria-hidden="true"></i></span>
                                 </a>
-                                <a href="#" class="btn btn-sm btn-danger mr-1"
+                                <a href="#" class="btn btn-sm mr-1"
                                     wire:click='deleteConfirm({{ $donor->id }})'>
-                                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>DELETE
+                                    <span><i class="fa text-danger fa-trash" aria-hidden="true"></i></span>
                                 </a>
                             </td>
                         </tr>
