@@ -113,13 +113,14 @@ class ShowDonors extends Component
         $donor = Donor::where('id', $id)->first();
         if ($donor != null) {
             $donor->delete();
-            $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
+            // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
+            return redirect()->route('donors.index')->with('success', 'You have successfully deleted a Donor record');
         }
     }
 
     public function render()
     {
         $donors = Donor::sortable()->orderBy('lastname', 'asc')->paginate(10);
-        return view('livewire.donor.show-donors', compact('donors'));
+        return view('livewire.donor.show-donor', compact('donors'));
     }
 }

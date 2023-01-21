@@ -1,5 +1,9 @@
 @extends('admin.layout.app')
 
+@section('title')
+    Pending Donors
+@endsection
+
 @section('content')
     @livewireStyles
     @livewire('pending.show-pending')
