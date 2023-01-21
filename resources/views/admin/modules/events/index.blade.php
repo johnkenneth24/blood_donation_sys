@@ -4,7 +4,7 @@
 
 @section('content')
     @livewireStyles
-    
+
     <div class="card card-custom gutter-b">
         <x-errors></x-errors>
         <x-success></x-success>
@@ -15,8 +15,7 @@
                 <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage event details here</span>
             </h3>
             <div class="card-toolbar">
-                <a href="#" class="btn btn-danger font-weight-bolder font-size-sm" data-toggle="modal"
-                    data-target="#create">
+                <a href="{{ route('events.create') }}" class="btn btn-danger font-weight-bolder font-size-sm">
                     <span class="svg-icon svg-icon-md svg-icon-white">
                         <i class="flaticon2-document"></i><i class="la la-plus"></i>
                     </span>New Record</a>
@@ -28,7 +27,6 @@
                     <thead>
                         <tr class="text-left">
                             <th class="pl-0 pr-0">#</th>
-                            {{-- <th>@sortablelink('bloodtype', 'Blood Type')</th> --}}
                             <th>Event Title</th>
                             <th>Date</th>
                             <th style="width: 200px">Details</th>
@@ -46,18 +44,14 @@
                                 <td>{{ $event->description }}</td>
                                 <td>{{ $event->author }}</td>
                                 <td>
-                                    {{-- <img src="{{ asset('storage/events/' . $event->image) }}" alt="event image"
-                                        class="img-thumbnail" width="100"> --}}
+                                    <img src="/image/{{ $event->image }}" alt="event image" class="img-thumbnail"
+                                        width="100">
                                 </td>
                                 <td class="pr-0 text-right">
-                                    <a href="#" class="btn btn-sm btn-primary mr-1"
-                                        wire:click='edit({{ $event->id }})' data-target="#edit" data-toggle="modal">
+                                    <a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm btn-primary mr-1">
                                         <span><i class="fa fa-edit" aria-hidden="true"></i></span>
                                     </a>
-                                    <a href="#" class="btn btn-sm btn-danger mr-1"
-                                        wire:click='deleteConfirm({{ $event->id }})'>
-                                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                                    </a>
+                                    @livewire('events.delete', ['event' => $event], key($event->id))
                                 </td>
                             </tr>
                         @empty
