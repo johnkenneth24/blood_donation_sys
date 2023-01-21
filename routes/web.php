@@ -8,6 +8,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\Auth\AuthController; 
 use App\Http\Controllers\PendingController; 
 use App\Http\Controllers\RegisterDonorController; 
+use App\Http\Controllers\RegDonorController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'landingHome'])->name('home');
@@ -18,6 +19,19 @@ Route::middleware('guest')->group(function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     // Route::post('/register', [HomeController::class, 'register'])->name('register-donor');
     Route::post('/register-donor', [RegisterDonorController::class, 'store'])->name('register-donor');
+
+    Route::controller(RegDonorController::class)->group(function () {
+        Route::group([
+            'prefix' => 'register'
+        ], function () {
+            Route::get('/', 'index')->name('register.index');
+            // Route::get('/create', 'create')->name('events.create');
+            // Route::get('/edit', 'edit')->name('events.edit');
+            // Route::post('/store', 'store')->name('events.store');
+            // Route::put('/update', 'update')->name('events.update');
+            // Route::get('/show/{id}', 'show')->name('events.show');
+        });
+    });
 });
 
 
@@ -61,6 +75,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/show/{id}', 'show')->name('events.show');
         });
     });
+
+    
 
     // Route::controller(RegisterDonorController::class)->group(function () {
     //     Route::group([
