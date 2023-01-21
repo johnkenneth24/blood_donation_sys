@@ -25,7 +25,7 @@
                         </span>
                         @if (count($upcoming) > 0)
                             <h6 class="card-label mb-0">
-                                UPCOMMING EVENT ({{ count($upcoming) }})
+                                UPCOMING EVENT ({{ count($upcoming) }})
                             </h6>
                     </div>
                 </div>
