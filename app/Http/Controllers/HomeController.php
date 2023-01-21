@@ -17,7 +17,7 @@ class HomeController extends Controller
         $bloodtypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'I dont know'];
         $gender = ['Male', 'Female', 'Prefer not to say'];
 
-        $events = Event::orderBy('date', 'desc')->paginate(3);
+        $events = Event::orderBy('date', 'desc')->paginate(4);
 
         return view('modules.home.home', compact('bloodtypes', 'gender', 'events'));
     }
