@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add a new Donor</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Pending Donor</h5>
                     <button type="button" class="close" data-dismiss="modal" wire:click="resetInputFields"
                         aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>

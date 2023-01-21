@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        if (!User::where('username', 'admin')->first()) {
-            $user = User::create([
+        if (!Users::where('username', 'admin')->first()) {
+            $user = Users::create([
                 'name' => 'admin',
                 'username' => 'admin',
                 'password' => Hash::make('password')

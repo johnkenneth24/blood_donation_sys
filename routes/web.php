@@ -5,10 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PendingController;
-use App\Http\Controllers\RegisterDonorController;
 use App\Http\Controllers\RegDonorController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\RegisterDonorController;
 
 
 Route::middleware('guest')->group(function () {
@@ -42,18 +43,6 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(DonorController::class)->group(function () {
         Route::group([
-            'prefix' => 'pending'
-        ], function () {
-            Route::get('/', 'index')->name('pending.index');
-            Route::get('/create', 'create')->name('pending.create');
-            Route::get('/edit', 'edit')->name('pending.edit');
-            Route::post('/store', 'store')->name('pending.store');
-            Route::put('/update', 'update')->name('pending.update');
-            ROute::get('/show/{id}', 'show')->name('pending.show');
-        });
-    });
-    Route::controller(PendingController::class)->group(function () {
-        Route::group([
             'prefix' => 'donor'
         ], function () {
             Route::get('/', 'index')->name('donor.index');
@@ -62,6 +51,18 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', 'store')->name('donor.store');
             Route::put('/update', 'update')->name('donor.update');
             ROute::get('/show/{id}', 'show')->name('donor.show');
+        });
+    });
+    Route::controller(PendingController::class)->group(function () {
+        Route::group([
+            'prefix' => 'pending'
+        ], function () {
+            Route::get('/', 'index')->name('pending.index');
+            Route::get('/create', 'create')->name('pending.create');
+            Route::get('/edit', 'edit')->name('pending.edit');
+            Route::post('/store', 'store')->name('pending.store');
+            Route::put('/update', 'update')->name('pending.update');
+            ROute::get('/show/{id}', 'show')->name('pending.show');
         });
     });
     Route::controller(EventController::class)->group(function () {
@@ -77,18 +78,16 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    
-
-    // Route::controller(RegisterDonorController::class)->group(function () {
-    //     Route::group([
-    //         'prefix' => 'register-donor'
-    //     ], function () {
-    //         Route::get('/', 'index')->name('register-donor.index');
-    //         Route::get('/create', 'create')->name('register-donor.create');
-    //         Route::get('/edit', 'edit')->name('register-donor.edit');
-    //         // Route::post('/store', 'store')->name('register-donor.store');
-    //         Route::put('/update', 'update')->name('register-donor.update');
-    //         Route::get('/show/{id}', 'show')->name('register-donor.show');
-    //     });
-    // });
+    Route::controller(UsersController::class)->group(function () {
+        Route::group([
+            'prefix' => 'users'
+        ], function () {
+            Route::get('/', 'index')->name('users.index');
+            Route::get('/create', 'create')->name('users.create');
+            Route::get('/edit/{id}', 'edit')->name('users.edit');
+            Route::post('/store', 'store')->name('users.store');
+            Route::put('/update/{id}', 'update')->name('users.update');
+            Route::get('/show/{id}', 'show')->name('users.show');
+        });
+    });
 });
