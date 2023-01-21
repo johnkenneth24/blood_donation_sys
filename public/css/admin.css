@@ -10,3 +10,7 @@
 .menu-text {
   color: white !important;
 }
+
+.aside-menu .menu-nav>.menu-item.menu-item-active>.menu-heading, .aside-menu .menu-nav>.menu-item.menu-item-active>.menu-link{
+  width: 108px !important;
+}
