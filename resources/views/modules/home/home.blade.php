@@ -34,7 +34,7 @@
                         @foreach ($upcoming as $event)
                             <li class="text-wrap">{{ $event->title }} will be held on
                                 {{ date('F d, Y', strtotime($event->date)) }}. <a class="fst-italic"
-                                    href="{{ route('register.index') }}">Register Here!</a>
+                                    href="{{ route('donor.register') }}">Register Here!</a>
                             </li>
                         @endforeach
                     </ul>

@@ -13,19 +13,19 @@ class Donor extends Model
 
     protected $fillable = [
         'firstname',
-        'middlename',
         'lastname',
-        'age',
-        'gender',
+        'middlename',
+        'email',
         'address',
         'contact_no',
-        'bloodtype',
+        'blood_type',
+        'gender',
+        'age',
+        'bdate',
+        'terms',
+        'status',
+        'bag_blood',
     ];
-
-    // public function fullname()
-    // {
-    //     return $this->lastname . ', ' . $this->firstname . ' ' . substr($this->middlename, 0, 1) . '.';
-    // }
 
     public $sortable = [
         'lastname',
@@ -37,7 +37,6 @@ class Donor extends Model
         'created_at',
         'updated_at',
 
-        // merge last_name and first_name and sort by that
         'fullname' => ['last_name', 'first_name', 'middle_name'],
     ];
 }

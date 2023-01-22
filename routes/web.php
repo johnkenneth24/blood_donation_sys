@@ -8,31 +8,23 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PendingController;
 use App\Http\Controllers\RegDonorController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AuthController; 
 use App\Http\Controllers\RegisterDonorController;
 use App\Http\Controllers\ReportController;
+ 
 
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'landingHome'])->name('home');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/verify', [AuthController::class, 'verify'])->name('auth.verify');
-    Route::get('/about', [HomeController::class, 'about'])->name('about');
-    Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-    // Route::post('/register', [HomeController::class, 'register'])->name('register-donor');
-    Route::post('/register-donor', [RegisterDonorController::class, 'store'])->name('register-donor');
 
-    Route::controller(RegDonorController::class)->group(function () {
+    Route::controller(DonorController::class)->group(function () {
         Route::group([
-            'prefix' => 'register'
+            'prefix' => 'donor'
         ], function () {
-            Route::get('/', 'index')->name('register.index');
-            // Route::get('/create', 'create')->name('events.create');
-            // Route::get('/edit', 'edit')->name('events.edit');
-            // Route::post('/store', 'store')->name('events.store');
-            // Route::put('/update', 'update')->name('events.update');
-            // Route::get('/show/{id}', 'show')->name('events.show');
+            Route::get('/register', 'create')->name('donor.register');
+            Route::post('/pendingStore', 'pendingStore')->name('donor.pendingStore');
         });
     });
 });
@@ -47,25 +39,16 @@ Route::middleware('auth')->group(function () {
             'prefix' => 'donor'
         ], function () {
             Route::get('/', 'index')->name('donor.index');
+            Route::get('/pending', 'pending')->name('donor.pending');
             Route::get('/create', 'create')->name('donor.create');
             Route::get('/edit', 'edit')->name('donor.edit');
             Route::post('/store', 'store')->name('donor.store');
             Route::put('/update', 'update')->name('donor.update');
-            ROute::get('/show/{id}', 'show')->name('donor.show');
+            Route::get('/show/{id}', 'show')->name('donor.show');
+            Route::post('/setStatus/{id}', 'setStatus')->name('donor.setStatus');
         });
     });
-    Route::controller(PendingController::class)->group(function () {
-        Route::group([
-            'prefix' => 'pending'
-        ], function () {
-            Route::get('/', 'index')->name('pending.index');
-            Route::get('/create', 'create')->name('pending.create');
-            Route::get('/edit', 'edit')->name('pending.edit');
-            Route::post('/store', 'store')->name('pending.store');
-            Route::put('/update', 'update')->name('pending.update');
-            ROute::get('/show/{id}', 'show')->name('pending.show');
-        });
-    });
+
     Route::controller(EventController::class)->group(function () {
         Route::group([
             'prefix' => 'events'

@@ -26,7 +26,7 @@
                         <th>@sortablelink('lastname', 'Fullname')</th>
                         <th>@sortablelink('address', 'Address')</th>
                         <th>@sortablelink('age', 'Age')</th>
-                        <th>Age</th>
+                        <th>Gender</th>
                         <th>@sortablelink('bloodtype', 'Blood Type')</th>
                         <th>Contact No.</th>
                         <th class="text-center pr-0">Actions</th>
@@ -42,11 +42,11 @@
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->address }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
-                                {{ $donor->gender }}</td>
-                            <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->age }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
-                                {{ $donor->bloodtype }}</td>
+                                {{ $donor->gender }}</td>
+                            <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
+                                {{ $donor->blood_type }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->contact_no }}</td>
                             <td class="pr-0  text-right">
@@ -54,8 +54,13 @@
                                     data-target="#edit" data-toggle="modal">
                                     <span><i class="fa text-primary fa-edit" aria-hidden="true"></i></span>
                                 </a>
+                                {{-- anchor tag to a modal with id of setStatus --}}
+                                <a href="#" class="btn btn-sm mr-1" data-toggle="modal"
+                                    data-target="#setStatus{{ $donor->id }}">
+                                    <span><i class="fa text-success fa-check" aria-hidden="true"></i></span>
+                                </a>
                                 <a href="#" class="btn btn-sm mr-1"
-                                    wire:click='deleteConfirm({{ $donor->id }})'>
+                                    wire:click='deleteConfirm({{ $donor->id }})' wire:loading.attr="disabled">
                                     <span><i class="fa text-danger fa-trash" aria-hidden="true"></i></span>
                                 </a>
                             </td>
@@ -71,3 +76,34 @@
         </div>
     </div>
 </div>
+
+{{-- modal with an id of setStatus with a form asking for how many bags of blood is donated --}}
+@foreach ($donors as $donor)
+    <div class="modal fade" id="setStatus{{ $donor->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Set Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('donor.setStatus', $donor->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>How many bags of blood is donated?</label>
+                            <input type="number" name="bag_blood" class="form-control" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
