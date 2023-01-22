@@ -8,7 +8,10 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PendingController;
 use App\Http\Controllers\RegDonorController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AuthController; 
+use App\Http\Controllers\RegisterDonorController;
+use App\Http\Controllers\ReportController;
+ 
 
 
 Route::middleware('guest')->group(function () {
@@ -69,6 +72,14 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', 'store')->name('users.store');
             Route::put('/update/{id}', 'update')->name('users.update');
             Route::get('/show/{id}', 'show')->name('users.show');
+        });
+    });
+
+    Route::controller(ReportController::class)->group(function () {
+        Route::group([
+            'prefix' => 'report'
+        ], function () {
+            Route::get('/', 'index')->name('report.index'); 
         });
     });
 });

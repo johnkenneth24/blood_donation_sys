@@ -71,10 +71,10 @@
         @php
             use Illuminate\Support\Str;
         @endphp
-        <div class="row">
+        <div class="row d-flex justify-content-center">
             @forelse ($events as $event)
                 <div class="col-md-3">
-                    <div class="card card-custom">
+                    <div class="card card-custom" style="width: 100%;">
                         <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->title }}</h5>
