@@ -35,8 +35,8 @@
                     </a>
                 </li>
 
-                <li class="menu-item {{-- !request()->routeIs('report.*') ?: 'menu-item-active' --}}" aria-haspopup="true">
-                    <a href="{{-- route('report.index') --}}" class="menu-link">
+                <li class="menu-item {{ !request()->routeIs('report.*') ?: 'menu-item-active' }}" aria-haspopup="true">
+                    <a href="{{ route('report.index') }}" class="menu-link">
                         <i class="menu-icon flaticon2-document"></i>
                         <span class="menu-text">Reports</span>
                     </a>
