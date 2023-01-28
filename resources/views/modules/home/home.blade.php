@@ -7,8 +7,8 @@
 @section('content')
     <section id="landingHome" class="container-fluid d-flex justify-content-center align-items-center">
         <div class="row">
-            <div class="text-landing">
-                <h1 class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
+            <div data-aos="fade-down" data-aos-duration="1500" class="text-landing">
+                <h1  class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
                 <blockquote class="text-center">"Join Us And Save Lives!"</blockquote>
             </div>
 
@@ -17,48 +17,49 @@
                     ->orderBy('date', 'asc')
                     ->paginate(3);
             @endphp
-            <div class="card card-custom gutter-b col-md-9 container-md">
-                <div class="card-header p-0 pt-2">
-                    <div class="card-title">
-                        <span class="card-icon">
-                            <i class="flaticon2-chat-1 text-primary"></i>
-                        </span>
-                        @if (count($upcoming) > 0)
-                            <h6 class="card-label mb-0">
-                                UPCOMING EVENT/S ({{ count($upcoming) }})
-                            </h6>
+            <div class="col-md-12">
+                <div data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1500" class="card card-custom gutter-b">
+                    <div class="card-header p-0 pt-2">
+                        <div class="card-title">
+                            <span class="card-icon">
+                                <i class="flaticon2-chat-1 text-primary"></i>
+                            </span>
+                            @if (count($upcoming) > 0)
+                                <h6 class="card-label mb-0">
+                                    UPCOMING EVENT/S ({{ count($upcoming) }})
+                                </h6>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            @foreach ($upcoming as $event)
+                                <li class="text-wrap">{{ $event->title }} will be held on
+                                    {{ date('F d, Y', strtotime($event->date)) }}
+                                    ({{ date('h:i A', strtotime($event->time)) }})
+                                    at {{ $event->location }}. <a class="fst-italic"
+                                        href="{{ route('donor.register') }}">Register Here!</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                        @endif
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <p class="mb-0 fs-6">Please check the <a href="#blog" class="text-success">list of events for more
+                                details</a>.</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <ul>
-                        @foreach ($upcoming as $event)
-                            <li class="text-wrap">{{ $event->title }} will be held on
-                                {{ date('F d, Y', strtotime($event->date)) }}
-                                ({{ date('h:i A', strtotime($event->time)) }})
-                                at {{ $event->location }}. <a class="fst-italic"
-                                    href="{{ route('donor.register') }}">Register Here!</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                    @endif
-                </div>
-                <div class="card-footer d-flex justify-content-between">
-                    <p class="mb-0 fs-6">Please check the <a href="#blog" class="text-success">list of events for more
-                            details</a>.</p>
-                </div>
             </div>
-
         </div>
     </section>
     <section id="about" class="container-fluid d-flex justify-content-center align-items-center">
         <div class="row">
             <div class="col-md-6">
-                <div class="image text-center">
+                <div data-aos="fade-right" data-aos-duration="1500" class="image text-center">
                     <img src="{{ asset('image/about.png') }}" alt="">
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="text">
+                <div data-aos="fade-left" data-aos-duration="1500" class="text">
                     <h1>WHY DONATING BLOOD IS IMPORTANT?</h1>
                     <p class="mt-4">
                         Blood is essential to help patients survive surgeries, cancer treatment, chronic illnesses, and
@@ -76,7 +77,7 @@
         <div class="col-md-12 d-flex flex-wrap justify-content-center">
             @forelse ($events as $event)
                 <div class="col-md-3 d-flex justify-content-center">
-                    <div class="card card-custom" style="width: 300px;">
+                    <div data-aos="flip-left" data-aos-duration="1500" class="card mb-2 card-custom" style="width: 300px;">
                         <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ $event->title }}</h5>
@@ -93,7 +94,7 @@
                                 {{ date('h:i A', strtotime($event->time)) }} |
                                 {{ date('F d, Y', strtotime($event->date)) }}
                             </h6>
-                            <<p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
+                            <p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
                             <a href="{{ route('event.view', $event->id) }}">Read More...</a>
                         </div>
                     </div>
@@ -112,7 +113,7 @@
     </div>
 
     <section id="contact" class="container-fluid d-flex flex-wrap align-items-center">
-        <div class="col-md-6 ps-5">
+        <div data-aos="fade-right" data-aos-duration="1500" class="col-md-6 ps-5">
             <div class="des-contact">
                 <h1 class="text-danger"><i class="fas fa-map-marker-alt"> </i> RHU IROSIN</h1>
                 <p class="mt-4">Below are the contact information:</p>
@@ -133,8 +134,8 @@
             </div>
         </div>
         <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
-            <div class="card card-custom w-100">
-                <div class="card-body">
+            <div data-aos="zoom-in-up" data-aos-duration="1500" class="card card-custom w-100">
+                <div  class="card-body">
                     <form action="mailto:rhu_irosindistrict@gmail.com" target="_blank">
                         <h5 class="card-title">Send us your enquiries</h5>
                         <div class="mb-3">

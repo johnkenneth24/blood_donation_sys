@@ -14,7 +14,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
      <link rel="shortcut icon" href="{{ asset('images/blood-alt.png') }}" type="image/x-icon" />
      <script src="https://kit.fontawesome.com/5d19900f91.js" crossorigin="anonymous"></script>
-
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
      <style>
          [x-cloak] {
              display: none !important;
@@ -60,6 +60,11 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
      </script>
+     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+     <script>
+        AOS.init();
+      </script>
 
      @stack('scripts')
 
