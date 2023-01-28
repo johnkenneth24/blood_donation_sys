@@ -61,13 +61,19 @@ class DonorController extends Controller
 
         $donor = Donor::find($id);
 
+        $oldBagBlood = $donor->bag_blood;
+        $oldDonatedDate = $donor->donated_date;
+
+        if ($oldDonatedDate > $validated['donated_date']) {
+            return redirect()->route('donor.index')->with('error', 'Invalid date!');
+        }
+
         $donor->update([
-            'status' => 'donated',
-            'bag_blood' => $validated['bag_blood'],
+            'bag_blood' => $oldBagBlood + $validated['bag_blood'],
             'donated_date' => $validated['donated_date'],
         ]);
 
-        return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully, check the donor list for more details.');
+        return redirect()->route('donor.index')->with('success', 'Donor status updated successfully!');
     }
 
     // public function search(Request $req){

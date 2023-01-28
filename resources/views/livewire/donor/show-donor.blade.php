@@ -13,10 +13,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 my-2 my-md-0">
                             <div class="input-icon">
-                                <input wire:model="search" type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
-                                    <span>
-                                        <i class="flaticon2-search-1 text-muted"></i>
-                                    </span>
+                                <input wire:model="search" type="text" class="form-control" placeholder="Search..."
+                                    id="kt_datatable_search_query" />
+                                <span>
+                                    <i class="flaticon2-search-1 text-muted"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -34,13 +35,15 @@
                 <thead>
                     <tr class="text-left">
                         <th class="pl-0 pr-0">#</th>
-                        <th>{{-- @sortablelink('lastname', 'Fullname') --}}Name</th>
-                        <th>{{-- @sortablelink('address', 'Address') --}}Address</th>
-                        <th>{{-- @sortablelink('age', 'Age') --}}Gender</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Gender</th>
                         <th>Age</th>
-                        <th>{{-- @sortablelink('bloodtype', 'Blood Type') --}}Blood Type</th>
-                        <th>Contact No.</th>
-                        <th>Blood bags</th>
+                        <th class="text-center">Blood <br> Type</th>
+                        <th class="text-center">Contact <br> No.</th>
+                        <th class="text-center">Bag <br> Count</th>
+                        <th class="text-center">Date of <br> Donation</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,12 +65,25 @@
                             @endif
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->age }}</td>
-                            <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
+                            <td class="text-dark-75 font-weight-bolder text-center text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->blood_type }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->contact_no }}</td>
-                            <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
+                            <td class="text-dark-75 font-weight-bolder text-center text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->bag_blood }}
+                            </td>
+                            <td class="text-dark-75 font-weight-bolder text-center text-hover-danger mb-1 font-size-lg">
+                                {{ Carbon\Carbon::parse($donor->donated_date)->format('m/d/Y') }}
+                            </td>
+                            <td>
+                                @if (Carbon\Carbon::parse($donor->donated_date)->addMonths(3)->isPast())
+                                    <button data-toggle="modal" data-target="#setStatus{{ $donor->id }}"
+                                        class="btn btn-icon btn-warning btn-sm">
+                                        <span class="svg-icon svg-icon-md svg-icon-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @empty
@@ -77,7 +93,41 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- {!! $donors->appends(\Request::except('page'))->render() !!} --}}
+            {!! $donors->appends(\Request::except('page'))->render() !!}
         </div>
     </div>
 </div>
+
+@foreach ($donors as $donor)
+    <div class="modal fade" id="setStatus{{ $donor->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Set Status</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('donor.setStatus', $donor->id) }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label>How many bags of blood is donated?</label>
+                            <input type="number" name="bag_blood" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Blood Donation</label>
+                            <input type="date" name="donated_date" class="form-control" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
