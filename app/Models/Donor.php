@@ -25,6 +25,7 @@ class Donor extends Model
         'terms',
         'status',
         'bag_blood',
+        'donated_date',
     ];
 
     public $sortable = [
