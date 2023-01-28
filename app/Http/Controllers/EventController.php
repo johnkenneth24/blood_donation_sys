@@ -36,6 +36,8 @@ class EventController extends Controller
             'date' => $validated['date'],
             'author' => auth()->user()->name,
             'image' => $fileNameToStore,
+            'time' => $validated['time'],
+            'location' => $validated['location'],
         ]);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully');
@@ -69,6 +71,8 @@ class EventController extends Controller
             'date' => $validated['date'],
             'author' => auth()->user()->name,
             'image' => $fileNameToStore,
+            'time' => $validated['time'],
+            'location' => $validated['location'],
         ]);
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully');

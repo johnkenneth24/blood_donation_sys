@@ -13,7 +13,6 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 my-2 my-md-0">
                             <div class="input-icon">
-
                                 <input wire:model="search" type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
                                     <span>
                                         <i class="flaticon2-search-1 text-muted"></i>
@@ -24,7 +23,6 @@
                 </div>
                 <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
                     <button wire:click="search" class="btn btn-light-primary px-6 font-weight-bold">Search</button>
-
                 </div>
             </div>
         </div>
@@ -55,8 +53,13 @@
                             </td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->address }}</td>
-                            <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
-                                {{ $donor->gender }}</td>
+                            @if ($donor->gender == 'Male')
+                                <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">M</td>
+                            @elseif ($donor->gender == 'Female')
+                                <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">F</td>
+                            @else
+                                <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg"> </td>
+                            @endif
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">
                                 {{ $donor->age }}</td>
                             <td class="text-dark-75 font-weight-bolder text-hover-danger mb-1 font-size-lg">

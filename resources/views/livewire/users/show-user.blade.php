@@ -3,7 +3,7 @@
     @include('livewire.users.edit')
     <x-errors></x-errors>
     <x-success></x-success>
-    <div class="card card-custom gutter-b"> 
+    <div class="card card-custom gutter-b">
         <div class="card-header border-0 py-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label font-weight-bolder font-size-h1 text-dark">
@@ -12,9 +12,9 @@
             </h3>
             <div class="card-toolbar">
                 <a href="#" class="btn btn-danger font-weight-bolder font-size-sm" data-toggle="modal"
-                data-target="#create">
-                    <span class="svg-icon svg-icon-md svg-icon-white"> </i><i class="la la-plus"></i>
-                    </span>New Record</a>
+                    data-target="#create">
+                    <span class="svg-icon svg-icon-md svg-icon-white"><i class="la la-plus"></i></span>New User
+                </a>
             </div>
         </div>
         <div class="card-body py-0">
@@ -25,32 +25,39 @@
                             <th class="pl-0 pr-0">#</th>
                             <th>Name</th>
                             <th>Username</th>
-                            <th style="width: 200px">Details</th>
-                            <th class="text-center pr-0">Actions</th>
+                            {{-- <th style="width: 200px">Password</th> --}}
+                            <th class="text-center pr-0" style="width: 250px">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($users as $user) --}}
+                        @forelse ($users as $user)
                             <tr>
-                                <td class="text-muted pl-0 pr-0">{{--$loop->iteration }}</td>
-                                <td>{{--$user->name --}}</td>
-                                <td>{{--$user->username --}}</td>
-                                <td>{{--$user->password --}}</td>
-                                <td class="pr-0 text-right">
-                                    {{-- <a href="{{ route('events.edit',$event->id) }}" class="btn btn-sm btn-primary mr-1">
-                                        <span><i class="fa fa-edit" aria-hidden="true"></i></span>
-                                    </a> --}}
-                                    {{-- @livewire('events.delete', ['event' => $event], key($event->id)) --}}
+                                <td class="text-muted pl-0 pr-0">{{ $loop->iteration }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->username }}</td>
+                                {{-- <td>{{ $user->password }}</td> --}}
+                                <td class="pr-0 text-center">
+                                    <a href="#" class="btn btn-sm  mr-1" wire:click='edit({{ $user->id }})'
+                                        data-target="#edit" data-toggle="modal">
+                                        <span><i class="fa text-primary fa-edit" aria-hidden="true"></i></span>
+                                    </a>
+                                    <a href="#" class="btn btn-sm mr-1"
+                                        wire:click='deleteConfirm({{ $user->id }})' wire:loading.attr="disabled">
+                                        <span><i class="fa text-danger fa-trash" aria-hidden="true"></i></span>
+                                    </a>
                                 </td>
                             </tr>
-                        {{-- @empty
+                        @empty
                             <tr>
                                 <td colspan="8" class="text-center">No records found.</td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
-                {{-- {!! $events->appends(\Request::except('page'))->render() !!} --}}
+                {{-- pagination --}}
+                <div class="d-flex justify-content-center">
+                    {{ $users->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -59,7 +59,6 @@
                                 <option value="">Choose your gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
-                                <option value="I prefer not to say">I prefer not to say</option>
                             </select>
                             @error('gender')
                                 <span class="text-danger">{{ $message }}</span>

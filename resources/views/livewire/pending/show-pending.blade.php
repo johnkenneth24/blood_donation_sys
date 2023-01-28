@@ -82,7 +82,7 @@
 @foreach ($donors as $donor)
     <div class="modal fade" id="setStatus{{ $donor->id }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Set Status</h5>
@@ -96,6 +96,10 @@
                         <div class="form-group">
                             <label>How many bags of blood is donated?</label>
                             <input type="number" name="bag_blood" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Blood Donation</label>
+                            <input type="date" name="donated_date" class="form-control" required>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="text-landing">
                 <h1 class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
-                <blockquote class="text-center">"Joint Us And Save Life!"</blockquote>
+                <blockquote class="text-center">"Join Us And Save Lives!"</blockquote>
             </div>
 
             @php
@@ -17,7 +17,7 @@
                     ->orderBy('date', 'asc')
                     ->paginate(3);
             @endphp
-            <div class="card card-custom gutter-b">
+            <div class="card card-custom gutter-b col-md-9 container-md">
                 <div class="card-header p-0 pt-2">
                     <div class="card-title">
                         <span class="card-icon">
@@ -33,7 +33,9 @@
                     <ul>
                         @foreach ($upcoming as $event)
                             <li class="text-wrap">{{ $event->title }} will be held on
-                                {{ date('F d, Y', strtotime($event->date)) }}. <a class="fst-italic"
+                                {{ date('F d, Y', strtotime($event->date)) }}
+                                ({{ date('h:i A', strtotime($event->time)) }})
+                                at {{ $event->location }}. <a class="fst-italic"
                                     href="{{ route('donor.register') }}">Register Here!</a>
                             </li>
                         @endforeach
@@ -77,18 +79,21 @@
                     <div class="card card-custom" style="width: 300px;">
                         <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $event->title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $event->author }} |
-                                {{ date('F d, Y', strtotime($event->date)) }}
-                                @if ($event->date < date('Y-m-d'))
+                            <h5 class="card-title text-center">{{ $event->title }}</h5>
+                            <h6 class="text-center">
+                                @if (date('Y-m-d', strtotime($event->date)) < date('Y-m-d'))
                                     <span class="badge bg-danger">Past Event</span>
-                                @elseif ($event->date == date('Y-m-d'))
+                                @elseif (date('Y-m-d', strtotime($event->date)) == date('Y-m-d'))
                                     <span class="badge bg-success">Today</span>
                                 @else
                                     <span class="badge bg-primary">Upcoming</span>
                                 @endif
                             </h6>
-                            <p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted text-center">
+                                {{ date('h:i A', strtotime($event->time)) }} |
+                                {{ date('F d, Y', strtotime($event->date)) }}
+                            </h6>
+                            <p class="card-text">{{ Str::words($event->description, 5, $end = '...') }}</p>
                             <a href="#">Read More...</a>
                         </div>
                     </div>

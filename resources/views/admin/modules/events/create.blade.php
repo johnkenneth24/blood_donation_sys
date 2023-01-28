@@ -17,13 +17,23 @@
                             <input type="text" name="title" class="form-control" value="{{ old('title') }}"
                                 placeholder="Enter Event Title" />
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-3">
                             <label class="font-weight-bolder">Date of Event:<span class="text-danger">*</span></label>
                             <input type="date" name="date" class="form-control" value="{{ old('date') }}"
                                 placeholder="Enter Event Date" />
                         </div>
+                        <div class="form-group col-md-3">
+                            <label class="font-weight-bolder">Time of Event:<span class="text-danger">*</span></label>
+                            <input type="time" name="time" class="form-control" value="{{ old('time') }}"
+                                placeholder="Enter Event Time" />
+                        </div>
                         <div class="form-group col-md-12">
-                            <label class="font-weight-bolder">Description of Event: (include place and time)<span
+                            <label class="font-weight-bolder">Location of Event:<span class="text-danger">*</span></label>
+                            <input type="text" name="location" class="form-control" value="{{ old('location') }}"
+                                placeholder="Enter Event Location" />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bolder">Description of Event:<span
                                     class="text-danger">*</span></label>
                             <textarea name="description" rows="4" class="form-control"
                                 placeholder="Enter event description (e.g. place where event will be held, agencies or organizations that will participate, etc.)">{{ old('description') }}</textarea>

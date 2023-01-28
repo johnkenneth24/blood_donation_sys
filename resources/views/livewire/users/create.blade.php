@@ -1,4 +1,4 @@
-<form wire:submit.prevent="createUser">
+<form wire:submit.prevent="store">
     <div wire:ignore.self class="modal fade" id="create" tabindex="-1" role="dialog" data-backdrop="static"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -11,24 +11,24 @@
                     </button>
                 </div>
                 <div class="row justify-content-center mt-5">
-                    <div class="col-md-12"> 
-                            <div class="d-flex flex-wrap">
-                                <div class="form-group col-md-6">
-                                    <label class="font-weight-bolder">Fullname:<span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-                                        placeholder="Enter Fullname" />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="font-weight-bolder">Username:<span class="text-danger">*</span></label>
-                                    <input type="text" name="username" class="form-control" value="{{ old('username') }}"
-                                        placeholder="Enter username" />
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label class="font-weight-bolder">Password<span class="text-danger">*</span></label>
-                                    <input type="password" name="password" class="form-control" value="{{ old('password') }}"
-                                        placeholder="Enter password">
-                                </div>
-                            </div> 
+                    <div class="col-md-12">
+                        <div class="d-flex flex-wrap">
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bolder">Fullname:<span class="text-danger">*</span></label>
+                                <input type="text" name="name" wire:model='name' class="form-control"
+                                    value="{{ old('name') }}" placeholder="Enter Fullname" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="font-weight-bolder">Username:<span class="text-danger">*</span></label>
+                                <input type="text" name="username" wire:model='username' class="form-control"
+                                    value="{{ old('username') }}" placeholder="Enter username" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="font-weight-bolder">Password<span class="text-danger">*</span></label>
+                                <input type="password" name="password" wire:model='password' class="form-control"
+                                    value="{{ old('password') }}" placeholder="Enter password">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -40,9 +40,3 @@
         </div>
     </div>
 </form>
-
-
-
-
-
- 
