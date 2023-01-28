@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('title', 'Events')
+@section('title', 'Report')
 
 @section('content')
     @livewireStyles
@@ -16,14 +16,14 @@
             </h3>
         </div>
         <div class="card-body py-0 pb-5">
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">A+</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">A-</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">B+</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2  b py-5">B-</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">O+</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">O-</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">AB+</a>
-            <a href="#" class="btn btn-primary font-weight-bold font-size-h3 px-12 mb-2 py-5">AB-</a>
+            @livewire('blood-pos-a.export')
+            @livewire('blood-neg-a.export')
+            @livewire('blood-pos-b.export')
+            @livewire('blood-neg-b.export')
+            @livewire('blood-pos-o.export')
+            @livewire('blood-neg-o.export')
+            @livewire('blood-pos-ab.export')
+            @livewire('blood-neg-ab.export')
         </div>
     </div>
 
