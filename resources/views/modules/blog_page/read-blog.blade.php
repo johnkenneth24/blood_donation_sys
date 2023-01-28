@@ -37,20 +37,23 @@
     </nav>
 
     <section id="read-blog" class="">
-        <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="container">
             <div class="col-md-12">
                 <div class="card mb-3">
-                    <img src="{{ asset('image/about.png') }}" class="card-img-top" alt="...">
+                    <img src="/image/{{ $events->image }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text"><small class="text-muted">Author | 3 mins ago</small></p>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, ut hic at dignissimos consectetur ipsum, unde blanditiis odio deleniti tempore accusantium optio veniam atque dicta nostrum debitis laboriosam a quaerat?</p>
+                        <h5 class="card-title">{{ $events->title }}</h5>
+                        <p class="card-text"><small class="text-muted">{{ $events->author }} | {{ date('F d, Y', strtotime($events->date))  }}</small></p>
+                        <p class="card-text">{{ $events->description }}</p>
 
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

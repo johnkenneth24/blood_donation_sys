@@ -38,6 +38,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            use Illuminate\Support\Str;
+                        @endphp
                         @forelse ($events as $event)
                             <tr>
                                 <td class="text-muted pl-0 pr-0">{{ $loop->iteration }}</td>
@@ -45,7 +48,7 @@
                                 <td>{{ date('M. d, Y', strtotime($event->date)) }}</td>
                                 <td>{{ $event->location }}</td>
                                 <td>{{ $event->time }}</td>
-                                <td>{{ $event->description }}</td>
+                                <td>{{ Str::words($event->description, 5, $end='...')}}</td>
                                 <td>{{ $event->author }}</td>
                                 <td>
                                     <img src="/image/{{ $event->image }}" alt="event image" class="img-thumbnail"
