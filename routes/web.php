@@ -84,5 +84,5 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::post('donor/search', [DonorController::class, 'search'])->name('donor.search');
+    // Route::post('donor/search', [DonorController::class, 'search'])->name('donor.search');
 });

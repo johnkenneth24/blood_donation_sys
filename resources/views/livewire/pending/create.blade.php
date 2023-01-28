@@ -75,8 +75,8 @@
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold">Contact No.</label>
-                            <input type="number" class="form-control @error('contact_no') is-invalid @enderror "
-                                name="contact_no" placeholder="Enter contact no." wire:model="contact_no" />
+                            <input type="number" maxlength="10"  pattern="[0-9]{10}" class="form-control @error('contact_no') is-invalid @enderror "
+                                name="contact_no" placeholder="Enter contact no." wire:model="contact_no" >
                             @error('contact_no')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

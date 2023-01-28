@@ -69,9 +69,9 @@ class DonorController extends Controller
     }
 
 
-    public function search(Request $req){
-        $donors =Donor::where('lastname', 'like' ,  "%{$req->searchTerm}%")?->get();
-        return view('admin.modules.donors.index', compact('donors'));
-    }
+    // public function search(Request $req){
+    //     $donors =Donor::where('lastname', 'like' ,  "%{$req->searchTerm}%")?->get();
+    //     return view('admin.modules.donors.index', compact('donors'));
+    // }
 
 }
