@@ -27,12 +27,14 @@
                     <thead>
                         <tr class="text-left">
                             <th class="pl-0 pr-0">#</th>
-                            <th>Event Title</th>
+                            <th style="width: 200px">Event Title</th>
                             <th>Date</th>
+                            <th>Location</th>
+                            <th>Time</th>
                             <th style="width: 200px">Details</th>
                             <th>Author</th>
                             <th>Image</th>
-                            <th class="text-center pr-0">Actions</th>
+                            <th class="text-center pr-0" style="width: 150px">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,14 +42,16 @@
                             <tr>
                                 <td class="text-muted pl-0 pr-0">{{ $loop->iteration }}</td>
                                 <td>{{ $event->title }}</td>
-                                <td>{{ date('F d, Y', strtotime($event->date)) }}</td>
+                                <td>{{ date('M. d, Y', strtotime($event->date)) }}</td>
+                                <td>{{ $event->location }}</td>
+                                <td>{{ $event->time }}</td>
                                 <td>{{ $event->description }}</td>
                                 <td>{{ $event->author }}</td>
                                 <td>
                                     <img src="/image/{{ $event->image }}" alt="event image" class="img-thumbnail"
                                         width="100">
                                 </td>
-                                <td class="pr-0 text-right">
+                                <td class="pr-0 text-center">
                                     <a href="{{ route('events.edit', $event->id) }}" class="btn btn-sm btn-primary mr-1">
                                         <span><i class="fa fa-edit" aria-hidden="true"></i></span>
                                     </a>
