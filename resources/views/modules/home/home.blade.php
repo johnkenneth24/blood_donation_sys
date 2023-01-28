@@ -73,8 +73,8 @@
         @endphp
         <div class="col-md-12 d-flex flex-wrap justify-content-center">
             @forelse ($events as $event)
-                <div class="col-md-3">
-                    <div class="card card-custom" style="width: 100%;">
+                <div class="col-md-3 d-flex justify-content-center">
+                    <div class="card card-custom" style="width: 300px;">
                         <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->title }}</h5>

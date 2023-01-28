@@ -16,7 +16,7 @@ class ShowDonors extends Component
     public $address;
     public $blood_type;
     public $donor_id;
-    
+
     public $search;
 
     protected $listeners = ['delete'];
@@ -122,7 +122,10 @@ class ShowDonors extends Component
 
     public function search()
     {
-        $this->donors = Donor::where('lastname', 'like', '%'.$this->search.'%')->get();
+        $this->donors = Donor::where('firstname', 'like', '%'.$this->search.'%')
+        ->orWhere('lastname', 'like', '%'.$this->search.'%')
+        ->orWhere(\DB::raw("concat(firstname, ' ', lastname)"), 'like', '%'.$this->search.'%')
+        ->get();
     }
 
     public function render()

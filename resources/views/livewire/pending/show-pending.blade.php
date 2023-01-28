@@ -13,8 +13,9 @@
             <a href="#" class="btn btn-danger font-weight-bolder font-size-sm" data-toggle="modal"
                 data-target="#create">
                 <span class="svg-icon svg-icon-md svg-icon-white">
-                    <i class="flaticon2-drop"></i> 
-                </span>Add Pending Donor</a>
+                    <i class="flaticon2-drop"></i>
+                </span>Add Pending Donor
+            </a>
         </div>
     </div>
     <div class="card-body py-0">

@@ -16,6 +16,7 @@ use App\Http\Controllers\ReportController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'landingHome'])->name('home');
+    Route::get('/read-event', [HomeController::class, 'blog'])->name('blog');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/verify', [AuthController::class, 'verify'])->name('auth.verify');
 
