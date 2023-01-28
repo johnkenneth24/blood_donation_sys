@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Donor;
 // use App\Http\Requests\Donors\StoreRequest;
-use Illuminate\Http\Client\Request;
+// use Illuminate\Http\Client\Request;
 use App\Http\Requests\RegisterDonor\StoreRequest;
+use Illuminate\Http\Request;
 
 class DonorController extends Controller
 {
@@ -66,4 +67,11 @@ class DonorController extends Controller
 
         return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully, check the donor list for more details.');
     }
+
+
+    public function search(Request $req){
+        $donors =Donor::where('lastname', 'like' ,  "%{$req->searchTerm}%")?->get();
+        return view('admin.modules.donors.index', compact('donors'));
+    }
+
 }

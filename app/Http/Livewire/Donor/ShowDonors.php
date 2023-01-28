@@ -17,6 +17,10 @@ class ShowDonors extends Component
     public $blood_type;
     public $donor_id;
 
+    public $query;
+
+
+
     protected $listeners = ['delete'];
 
     protected $rules = [
@@ -29,6 +33,17 @@ class ShowDonors extends Component
         'address' => 'required',
         'blood_type' => 'nullable',
     ];
+
+
+    public function mount()
+    {
+        $this->query = request()->query('query', '');
+    }
+
+    public function updateQuery()
+    {
+        $this->donors = Donor::where('name', 'like', "%{$this->query}%")->get();
+    }
 
     public function resetInputFields()
     {

@@ -7,7 +7,33 @@
                 <i class="flaticon2-drop text-danger font-size-h1"></i> Donors List</span>
             <span class="text-muted mt-3 font-weight-bold font-size-sm">Manage donor details here</span>
         </h3>
+        <div class="card-toolbar">
+            <div class="row align-items-center">
+                <div class="col-lg-9 pr-0 col-xl-8">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 my-2 my-md-0">
+                            <div class="input-icon">
+                                <form action="{{route('donor.search')}}" method="POST">
+                                    @csrf
+                                    <input type="text" name="searchTerm" value="{{ request()->input('query') }}" class="form-control" placeholder="Search..."
+                                        id="kt_datatable_search_query" />
+                                    <span>
+                                        <i class="flaticon2-search-1 text-muted"></i>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
+                    <button type="submit" href="#"
+                        class="btn btn-light-primary px-6 font-weight-bold">Search
+                    </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="card-body py-0">
         <div class="table-responsive">
             <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_1">
@@ -24,6 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @forelse ($donors as $donor)
                         <tr>
                             <td class="text-muted pl-0 pr-0">{{ $loop->iteration }}</td>
