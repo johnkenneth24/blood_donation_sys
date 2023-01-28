@@ -9,7 +9,7 @@
         <div class="row">
             <div class="text-landing">
                 <h1 class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
-                <blockquote class="text-center">"Let's Come to Donate Blood"</blockquote>
+                <blockquote class="text-center">"Joint Us And Save Life!"</blockquote>
             </div>
 
             @php
@@ -71,7 +71,7 @@
         @php
             use Illuminate\Support\Str;
         @endphp
-        <div class="row d-flex justify-content-center">
+        <div class="col-md-12 d-flex flex-wrap justify-content-center">
             @forelse ($events as $event)
                 <div class="col-md-3">
                     <div class="card card-custom" style="width: 100%;">

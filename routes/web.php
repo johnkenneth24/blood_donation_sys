@@ -8,10 +8,10 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PendingController;
 use App\Http\Controllers\RegDonorController;
-use App\Http\Controllers\Auth\AuthController; 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\RegisterDonorController;
 use App\Http\Controllers\ReportController;
- 
+
 
 
 Route::middleware('guest')->group(function () {
@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/pending', 'pending')->name('donor.pending');
             Route::get('/create', 'create')->name('donor.create');
             Route::get('/edit', 'edit')->name('donor.edit');
+            Route::get('/search', 'search')->name('donor.search');
             Route::post('/store', 'store')->name('donor.store');
             Route::put('/update', 'update')->name('donor.update');
             Route::get('/show/{id}', 'show')->name('donor.show');
@@ -79,7 +80,9 @@ Route::middleware('auth')->group(function () {
         Route::group([
             'prefix' => 'report'
         ], function () {
-            Route::get('/', 'index')->name('report.index'); 
+            Route::get('/', 'index')->name('report.index');
         });
     });
+
+    Route::post('donor/search', [DonorController::class, 'search'])->name('donor.search');
 });
