@@ -73,4 +73,10 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully');
     }
+
+    public function view(Event $event, $id)
+    {
+        $events = Event::find($id);
+        return view('modules.blog_page.read-blog', compact('events'));
+    }
 }

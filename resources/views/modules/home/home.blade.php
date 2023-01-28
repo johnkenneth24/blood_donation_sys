@@ -89,7 +89,7 @@
                                 @endif
                             </h6>
                             <p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
-                            <a href="#">Read More...</a>
+                            <a href="{{ route('event.view', $event->id) }}">Read More...</a>
                         </div>
                     </div>
                 </div>

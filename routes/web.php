@@ -28,6 +28,9 @@ Route::middleware('guest')->group(function () {
             Route::post('/pendingStore', 'pendingStore')->name('donor.pendingStore');
         });
     });
+
+    Route::get('view/{id}', [EventController::class, 'view'])->name('event.view');
+
 });
 
 
@@ -58,6 +61,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('events.index');
             Route::get('/create', 'create')->name('events.create');
             Route::get('/edit/{id}', 'edit')->name('events.edit');
+            // Route::get('/view/{id}', 'view')->name('events.view');
             Route::post('/store', 'store')->name('events.store');
             Route::put('/update/{id}', 'update')->name('events.update');
             Route::get('/show/{id}', 'show')->name('events.show');
