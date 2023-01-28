@@ -28,6 +28,8 @@ class StoreRequest extends FormRequest
             'description' => ['required'],
             'date' => ['required'],
             'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:3048'],
+            'time' => ['required'],
+            'location' => ['required'],
         ];
     }
 
@@ -41,6 +43,8 @@ class StoreRequest extends FormRequest
             'image.image' => 'Image must be a valid image',
             'image.mimes' => 'Image must be a file of type: jpeg, png, jpg, gif, svg',
             'image.max' => 'Image may not be greater than 3048 kilobytes',
+            'time.required' => 'Time is required',
+            'location.required' => 'Location is required',
         ];
     }
 }

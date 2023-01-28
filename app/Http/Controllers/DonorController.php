@@ -24,7 +24,7 @@ class DonorController extends Controller
     public function create()
     {
         $bloodtypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'I dont know'];
-        $gender = ['Male', 'Female', 'Prefer not to say'];
+        $gender = ['Male', 'Female'];
 
         return view('modules.register-donor.register', compact('bloodtypes', 'gender'));
     }
@@ -56,6 +56,7 @@ class DonorController extends Controller
     {
         $validated = request()->validate([
             'bag_blood' => 'required',
+            'donated_date' => 'required',
         ]);
 
         $donor = Donor::find($id);
@@ -63,11 +64,11 @@ class DonorController extends Controller
         $donor->update([
             'status' => 'donated',
             'bag_blood' => $validated['bag_blood'],
+            'donated_date' => $validated['donated_date'],
         ]);
 
         return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully, check the donor list for more details.');
     }
-
 
     // public function search(Request $req){
     //     $donors =Donor::where('lastname', 'like' ,  "%{$req->searchTerm}%")?->get();

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('description');
+            $table->string('time');
+            $table->string('location');
+            $table->longText('description');
             $table->date('date');
             $table->string('image');
             $table->softDeletes();
