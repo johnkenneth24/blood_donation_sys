@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card card-custom card-stretch gutter-b">
             <!--begin::Header-->
             <div class="card-header ribbon ribbon-top ribbon-ver border-0 ">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-title">
                     <div class="card-label">
-                        <div class="font-size-h3 font-weight-bolder">Total Donors</div>
+                        <div class="font-size-h3 font-weight-bolder">Donor</div>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 <!--begin::Title-->
                                 <div>
                                     <div class="font-size-h4 text-nowrap text-dark-75 font-weight-bolder">
-                                       12
+                                       {{ $donCount }}
                                     </div>
                                     <div class="font-size-sm text-muted font-weight-bold mt-1">Total</div>
                                 </div>
@@ -61,7 +61,60 @@
             <!--end::Body-->
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
+        <div class="card card-custom card-stretch gutter-b">
+            <!--begin::Header-->
+            <div class="card-header ribbon ribbon-top ribbon-ver border-0 ">
+                <div class="ribbon-target bg-danger" style="top: -2px; right: 20px;">
+                    <i class="fa fa-star text-white"></i>
+                </div>
+                <div class="card-title">
+                    <div class="card-label">
+                        <div class="font-size-h3 font-weight-bolder">Blood Bag</div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Header-->
+            <!--begin::Body-->
+            <div class="card-body pt-1 d-flex flex-column">
+                <!--begin::Items-->
+                <div class="mb-0">
+                    <div class="row row-paddingless">
+                        <!--begin::Item-->
+                        <div class="col mt-1">
+                            <div class="d-flex align-items-center mr-2">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-45 symbol-light-danger mr-4 flex-shrink-0">
+                                    <div class="symbol-label">
+                                        <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo13\dist/../src/media/svg/icons\Shopping\Bag2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"/>
+                                                <path d="M5.94290508,4 L18.0570949,4 C18.5865712,4 19.0242774,4.41271535 19.0553693,4.94127798 L19.8754445,18.882556 C19.940307,19.9852194 19.0990032,20.9316862 17.9963398,20.9965487 C17.957234,20.9988491 17.9180691,21 17.8788957,21 L6.12110428,21 C5.01653478,21 4.12110428,20.1045695 4.12110428,19 C4.12110428,18.9608266 4.12225519,18.9216617 4.12455553,18.882556 L4.94463071,4.94127798 C4.97572263,4.41271535 5.41342877,4 5.94290508,4 Z" fill="#000000" opacity="0.3"/>
+                                                <path d="M7,7 L9,7 C9,8.65685425 10.3431458,10 12,10 C13.6568542,10 15,8.65685425 15,7 L17,7 C17,9.76142375 14.7614237,12 12,12 C9.23857625,12 7,9.76142375 7,7 Z" fill="#000000"/>
+                                            </g>
+                                        </svg><!--end::Svg Icon--></span>
+                                    </div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Title-->
+                                <div>
+                                    <div class="font-size-h4 text-nowrap text-dark-75 font-weight-bolder">
+                                       {{ $bloodCount }}
+                                    </div>
+                                    <div class="font-size-sm text-muted font-weight-bold mt-1">Total</div>
+                                </div>
+                                <!--end::Title-->
+                            </div>
+                        </div>
+                        <!--end::Item-->
+                    </div>
+                </div>
+                <!--end::Items-->
+            </div>
+            <!--end::Body-->
+        </div>
+    </div>
+    <div class="col-md-3">
         <div class="card card-custom card-stretch gutter-b">
             <!--begin::Header-->
             <div class="card-header ribbon ribbon-top ribbon-ver border-0 ">
@@ -102,7 +155,7 @@
                                 <!--begin::Title-->
                                 <div>
                                     <div class="font-size-h4 text-nowrap text-dark-75 font-weight-bolder">
-                                       12
+                                       {{ $male}}
                                     </div>
                                     <div class="font-size-sm text-muted font-weight-bold mt-1">Total Male</div>
                                 </div>
@@ -117,7 +170,7 @@
             <!--end::Body-->
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card card-custom card-stretch gutter-b">
             <!--begin::Header-->
             <div class="card-header ribbon ribbon-top ribbon-ver border-0 ">
@@ -158,7 +211,7 @@
                                 <!--begin::Title-->
                                 <div>
                                     <div class="font-size-h4 text-nowrap text-dark-75 font-weight-bolder">
-                                       12
+                                       {{ $female}}
                                     </div>
                                     <div class="font-size-sm text-muted font-weight-bold mt-1">Total Female</div>
                                 </div>
@@ -201,7 +254,7 @@
     <script>
         var options = {
             series: [{
-                data: [44, 55, 41, 64, 22, 43, 21, 55
+                data: [{{ $pA }}, {{ $nA}}, {{ $pB }}, {{ $nB }}, {{ $pO }}, {{ $nO }}, {{ $pAB }}, {{ $nAB }}
                 ]
             }],
             chart: {
@@ -238,5 +291,5 @@
 
         var chart = new ApexCharts(document.querySelector("#chart1"), options);
         chart.render();
-    </script> 
+    </script>
 @endpush
