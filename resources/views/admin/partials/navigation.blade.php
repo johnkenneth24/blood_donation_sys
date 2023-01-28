@@ -43,12 +43,16 @@
                         <span class="menu-text">Reports</span>
                     </a>
                 </li>
-                <li class="menu-item {{ !request()->routeIs('users.*') ?: 'menu-item-active' }}" aria-haspopup="true">
-                    <a href="{{ route('users.index') }}" class="menu-link">
-                        <i class="menu-icon flaticon2-user-1"></i>
-                        <span class="menu-text">Users</span>
-                    </a>
-                </li>
+                @if (auth()->user()->id == 1)
+                    <li class="menu-item {{ !request()->routeIs('users.*') ?: 'menu-item-active' }}"
+                        aria-haspopup="true">
+                        <a href="{{ route('users.index') }}" class="menu-link">
+                            <i class="menu-icon flaticon2-user-1"></i>
+                            <span class="menu-text">Users</span>
+                        </a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
