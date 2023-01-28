@@ -17,9 +17,7 @@ class ShowDonors extends Component
     public $blood_type;
     public $donor_id;
 
-    public $query;
-
-
+    public $search;
 
     protected $listeners = ['delete'];
 
@@ -33,17 +31,6 @@ class ShowDonors extends Component
         'address' => 'required',
         'blood_type' => 'nullable',
     ];
-
-
-    public function mount()
-    {
-        $this->query = request()->query('query', '');
-    }
-
-    public function updateQuery()
-    {
-        $this->donors = Donor::where('name', 'like', "%{$this->query}%")->get();
-    }
 
     public function resetInputFields()
     {
@@ -131,6 +118,14 @@ class ShowDonors extends Component
             // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
             return redirect()->route('donor.index')->with('success', 'You have successfully deleted a Donor record');
         }
+    }
+
+    public function search()
+    {
+        $this->donors = Donor::where('firstname', 'like', '%'.$this->search.'%')
+        ->orWhere('lastname', 'like', '%'.$this->search.'%')
+        ->orWhere(\DB::raw("concat(firstname, ' ', lastname)"), 'like', '%'.$this->search.'%')
+        ->get();
     }
 
     public function render()

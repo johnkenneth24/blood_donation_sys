@@ -70,10 +70,9 @@ class DonorController extends Controller
         return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully, check the donor list for more details.');
     }
 
+    // public function search(Request $req){
+    //     $donors =Donor::where('lastname', 'like' ,  "%{$req->searchTerm}%")?->get();
+    //     return view('admin.modules.donors.index', compact('donors'));
+    // }
 
-    public function search(Request $req)
-    {
-        $donors = Donor::where('lastname', 'like',  "%{$req->searchTerm}%")?->get();
-        return view('admin.modules.donors.index', compact('donors'));
-    }
 }

@@ -115,7 +115,7 @@
 }
 
 #blog {
-  height: 87vh;   
+  height: 87vh;
 }
 
 #contact {
@@ -134,3 +134,11 @@
   overflow: hidden;
 }
 
+#read-blog .card{
+    margin-top: 40px;
+}
+
+#read-blog img
+{
+    max-height: 400px;
+}

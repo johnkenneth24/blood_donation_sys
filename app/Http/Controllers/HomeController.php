@@ -12,4 +12,9 @@ class HomeController extends Controller
         $events = Event::orderBy('date', 'desc')->paginate(4);
         return view('modules.home.home', compact('events'));
     }
+
+    public function blog()
+    {
+        return view('modules.blog_page.read-blog');
+    }
 }

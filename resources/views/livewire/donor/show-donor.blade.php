@@ -13,10 +13,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 my-2 my-md-0">
                             <div class="input-icon">
-                                <form action="{{ route('donor.search') }}" method="POST">
-                                    @csrf
-                                    <input type="text" name="searchTerm" value="{{ request()->input('query') }}"
-                                        class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
+                                <input wire:model="search" type="text" class="form-control" placeholder="Search..." id="kt_datatable_search_query" />
                                     <span>
                                         <i class="flaticon2-search-1 text-muted"></i>
                                     </span>
@@ -25,9 +22,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
-                    <button type="submit" href="#" class="btn btn-light-primary px-6 font-weight-bold">Search
-                    </button>
-                    </form>
+                    <button wire:click="search" class="btn btn-light-primary px-6 font-weight-bold">Search</button>
                 </div>
             </div>
         </div>

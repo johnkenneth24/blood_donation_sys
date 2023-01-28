@@ -14,7 +14,8 @@
                 data-target="#create">
                 <span class="svg-icon svg-icon-md svg-icon-white">
                     <i class="flaticon2-drop"></i>
-                </span>Add Pending Donor</a>
+                </span>Add Pending Donor
+            </a>
         </div>
     </div>
     <div class="card-body py-0">
