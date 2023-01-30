@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Donor;
 
+use DB;
 use App\Models\Donor;
 use Livewire\Component;
+use App\Helpers\LogActivity;
 
 class ShowDonors extends Component
 {
@@ -77,6 +79,8 @@ class ShowDonors extends Component
 
         $this->resetInputFields();
         $this->emit('hideModal', '#create');
+
+        LogActivity::addToLog('Added a new Donor record');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully added a new Donor record']);
     }
 
@@ -99,6 +103,7 @@ class ShowDonors extends Component
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
 
+        LogActivity::addToLog('Updated a Donor record');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully updated a Donor record']);
     }
 
@@ -115,17 +120,17 @@ class ShowDonors extends Component
         $donor = Donor::where('id', $id)->first();
         if ($donor != null) {
             $donor->delete();
-            // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
+            LogActivity::addToLog('Deleted a Donor record');
             return redirect()->route('donor.index')->with('success', 'You have successfully deleted a Donor record');
         }
     }
 
     public function search()
     {
-        $this->donors = Donor::where('firstname', 'like', '%'.$this->search.'%')
-        ->orWhere('lastname', 'like', '%'.$this->search.'%')
-        ->orWhere(\DB::raw("concat(firstname, ' ', lastname)"), 'like', '%'.$this->search.'%')
-        ->get();
+        $this->donors = Donor::where('firstname', 'like', '%' . $this->search . '%')
+            ->orWhere('lastname', 'like', '%' . $this->search . '%')
+            ->orWhere(DB::raw("concat(firstname, ' ', lastname)"), 'like', '%' . $this->search . '%')
+            ->get();
     }
 
     public function render()

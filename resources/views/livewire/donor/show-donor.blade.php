@@ -120,7 +120,7 @@
                         @csrf
                         <div class="form-group">
                             <label>How many bags of blood is donated?</label>
-                            <input type="number" name="bag_blood" class="form-control" required>
+                            <input type="number" min="1" name="bag_blood" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Date of Blood Donation</label>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Events;
 
+use App\Helpers\LogActivity;
 use App\Models\Event;
 use Livewire\Component;
 
@@ -24,7 +25,7 @@ class Delete extends Component
         $event = Event::where('id', $id)->first();
         if ($event != null) {
             $event->delete();
-            // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted an Event record']);
+            LogActivity::addToLog('Deleted event: ' . $event->title);
             return redirect()->route('events.index')->with('success', 'Event deleted successfully');
         }
     }

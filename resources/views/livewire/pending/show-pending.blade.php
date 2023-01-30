@@ -93,9 +93,25 @@
                 <div class="modal-body">
                     <form action="{{ route('donor.pendingStatus', $donor->id) }}" method="POST">
                         @csrf
+                        @if ($donor->blood_type === 'IDK')
+                            <div class="form-group">
+                                <label>Blood Type</label>
+                                <select name="blood_type" class="form-control" required>
+                                    <option value="">-- Please Select --</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <label>How many bags of blood is donated?</label>
-                            <input type="number" name="bag_blood" class="form-control" required>
+                            <input type="number" name="bag_blood" min="1" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Date of Blood Donation</label>

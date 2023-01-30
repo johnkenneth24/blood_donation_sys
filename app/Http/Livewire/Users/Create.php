@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Users;
 
+use App\Helpers\LogActivity;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,8 @@ class Create extends Component
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password'])
         ]);
+
+        LogActivity::addToLog('User ' . $user->name . ' created.');
 
         session()->flash('message', 'User created successfully.');
     }

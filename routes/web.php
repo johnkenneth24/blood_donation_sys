@@ -9,6 +9,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PendingController;
 use App\Http\Controllers\RegDonorController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\RegisterDonorController;
 use App\Http\Controllers\ReportController;
 
@@ -36,6 +37,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/admin-dashboard', [AdminController::class, 'indexAdmin'])->name('admin-dashboard');
     Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    Route::get('add-to-log', [LogActivityController::class, 'addToLog'])->name('logs.add-to-log');
+    Route::get('log-activity', [LogActivityController::class, 'logActivity'])->name('logs.log-activity');
 
     Route::controller(DonorController::class)->group(function () {
         Route::group([
