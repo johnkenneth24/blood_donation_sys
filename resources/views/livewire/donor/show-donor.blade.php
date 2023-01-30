@@ -99,7 +99,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {!! $donors->appends(\Request::except('page'))->render() !!}
+            {{-- {!! $donors->appends(\Request::except('page'))->render() !!} --}}
         </div>
     </div>
 </div>

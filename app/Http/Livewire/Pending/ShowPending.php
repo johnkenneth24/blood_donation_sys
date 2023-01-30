@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pending;
 
+use DB;
 use App\Helpers\LogActivity;
 use App\Models\Donor;
 use Livewire\Component;
@@ -22,6 +23,8 @@ class ShowPending extends Component
     public $bag_count;
     public $status;
     public $donor_id;
+
+    public $searchPending;
 
     protected $listeners = ['delete'];
 
@@ -142,6 +145,14 @@ class ShowPending extends Component
             LogActivity::addToLog('Deleted a Donor record');
             return redirect()->route('donor.pending')->with('success', 'You have successfully deleted a Donor record');
         }
+    }
+
+    public function searchPending()
+    {
+        $this->donors = Donor::where('firstname', 'like', '%' . $this->searchPending . '%')
+            ->orWhere('lastname', 'like', '%' . $this->searchPending . '%')
+            ->orWhere(DB::raw("concat(firstname, ' ', lastname)"), 'like', '%' . $this->searchPending . '%')
+            ->get();
     }
 
     public function render()
