@@ -7,6 +7,8 @@ use App\Models\Donor;
 // use Illuminate\Http\Client\Request;
 use App\Http\Requests\RegisterDonor\StoreRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisteredNotification;
 
 class DonorController extends Controller
 {
@@ -48,6 +50,8 @@ class DonorController extends Controller
             'status' => 'pending',
             'bag_blood' => 0,
         ]);
+
+        Mail::to($donor->email)->send(new RegisteredNotification($donor));
 
         return redirect()->route('donor.register')->with('success', 'Thank you for registering! We will contact you soon.');
     }
