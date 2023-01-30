@@ -91,7 +91,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('donor.setStatus', $donor->id) }}" method="POST">
+                    <form action="{{ route('donor.pendingStatus', $donor->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>How many bags of blood is donated?</label>

@@ -56,7 +56,7 @@ class DonorController extends Controller
         return redirect()->route('donor.register')->with('success', 'Thank you for registering! We will contact you soon.');
     }
 
-    public function setStatus(Donor $donor, $id)
+    public function updateStatus(Donor $donor, $id)
     {
         $validated = request()->validate([
             'bag_blood' => 'required',
@@ -78,6 +78,24 @@ class DonorController extends Controller
         ]);
 
         return redirect()->route('donor.index')->with('success', 'Donor status updated successfully!');
+    }
+
+    public function pendingStatus(Donor $donor, $id)
+    {
+        $validated = request()->validate([
+            'bag_blood' => 'required',
+            'donated_date' => 'required',
+        ]);
+
+        $donor = Donor::find($id);
+
+        $donor->update([
+            'status' => 'donated',
+            'bag_blood' => $validated['bag_blood'],
+            'donated_date' => $validated['donated_date'],
+        ]);
+
+        return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully!');
     }
 
     // public function search(Request $req){

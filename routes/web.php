@@ -30,7 +30,6 @@ Route::middleware('guest')->group(function () {
     });
 
     Route::get('view/{id}', [EventController::class, 'view'])->name('event.view');
-
 });
 
 
@@ -50,7 +49,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', 'store')->name('donor.store');
             Route::put('/update', 'update')->name('donor.update');
             Route::get('/show/{id}', 'show')->name('donor.show');
-            Route::post('/setStatus/{id}', 'setStatus')->name('donor.setStatus');
+            Route::post('/pendingStatus/{id}', 'pendingStatus')->name('donor.pendingStatus');
+            Route::post('/updateStatus/{id}', 'updateStatus')->name('donor.updateStatus');
         });
     });
 

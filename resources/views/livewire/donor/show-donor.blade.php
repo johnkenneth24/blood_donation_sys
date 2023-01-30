@@ -83,6 +83,12 @@
                                             <i class="fas fa-edit"></i>
                                         </span>
                                     </button>
+                                @else
+                                    <button class="btn btn-icon btn-dark btn-sm" disabled>
+                                        <span class="svg-icon svg-icon-md svg-icon-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                    </button>
                                 @endif
                             </td>
                         </tr>
@@ -110,7 +116,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('donor.setStatus', $donor->id) }}" method="POST">
+                    <form action="{{ route('donor.updateStatus', $donor->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>How many bags of blood is donated?</label>
