@@ -49,11 +49,11 @@ class ShowUser extends Component
             'username' => $this->username,
             'password' => Hash::make($this->password),
         ]);
+        LogActivity::addToLog('Added a new User with name of ' . $this->name . ' !');
 
         $this->resetInputFields();
         $this->emit('hideModal', '#create');
 
-        LogActivity::addToLog('Added a new User with name of ' . $this->name . ' !');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully added a new User']);
     }
 
@@ -68,11 +68,11 @@ class ShowUser extends Component
             'username' => $this->username,
             'password' => Hash::make($this->password),
         ]);
+        LogActivity::addToLog('Updated the user record of ' . $this->name . ' !');
 
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
 
-        LogActivity::addToLog('Updated the user record of ' . $this->name . ' !');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully updated a User record']);
     }
 
