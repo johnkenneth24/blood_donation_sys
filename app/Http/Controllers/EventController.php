@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LogActivity;
 use App\Models\Event;
-use Illuminate\Http\Request;
 use App\Http\Requests\Events\StoreRequest;
 use App\Http\Requests\Events\UpdateRequest;
 
@@ -40,6 +40,8 @@ class EventController extends Controller
             'location' => $validated['location'],
         ]);
 
+        LogActivity::addToLog('Created a new event: ' . $events->title);
+
         return redirect()->route('events.index')->with('success', 'Event created successfully');
     }
 
@@ -75,6 +77,7 @@ class EventController extends Controller
             'location' => $validated['location'],
         ]);
 
+        LogActivity::addToLog('Updated an event: ' . $event->title);
         return redirect()->route('events.index')->with('success', 'Event updated successfully');
     }
 

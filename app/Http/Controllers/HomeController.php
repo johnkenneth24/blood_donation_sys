@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterDonor\StoreRequest;
 use App\Models\Event;
 
 class HomeController extends Controller

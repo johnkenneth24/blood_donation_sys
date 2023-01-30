@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Pending;
 
+use App\Helpers\LogActivity;
 use App\Models\Donor;
 use Livewire\Component;
 use Illuminate\Support\Arr;
@@ -92,6 +93,8 @@ class ShowPending extends Component
 
         $this->resetInputFields();
         $this->emit('hideModal', '#create');
+
+        LogActivity::addToLog('Added a new Donor record');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully added a new Donor record']);
     }
 
@@ -118,6 +121,7 @@ class ShowPending extends Component
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
 
+        LogActivity::addToLog('Updated a Donor record');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully updated a Donor record']);
     }
 
@@ -135,7 +139,7 @@ class ShowPending extends Component
         $donor = Donor::where('id', $id)->first();
         if ($donor != null) {
             $donor->delete();
-            // $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully deleted a Donor record']);
+            LogActivity::addToLog('Deleted a Donor record');
             return redirect()->route('donor.pending')->with('success', 'You have successfully deleted a Donor record');
         }
     }

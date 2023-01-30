@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Users;
 
+use App\Helpers\LogActivity;
 use App\Models\User;
 use App\Models\Users;
 use Livewire\Component;
@@ -48,9 +49,11 @@ class ShowUser extends Component
             'username' => $this->username,
             'password' => Hash::make($this->password),
         ]);
+        LogActivity::addToLog('Added a new User with name of ' . $this->name . ' !');
 
         $this->resetInputFields();
         $this->emit('hideModal', '#create');
+
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully added a new User']);
     }
 
@@ -65,9 +68,11 @@ class ShowUser extends Component
             'username' => $this->username,
             'password' => Hash::make($this->password),
         ]);
+        LogActivity::addToLog('Updated the user record of ' . $this->name . ' !');
 
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
+
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully updated a User record']);
     }
 
@@ -84,6 +89,8 @@ class ShowUser extends Component
         $user = Users::where('id', $id)->first();
         if ($user != null) {
             $user->delete();
+
+            LogActivity::addToLog('Deleted a User record');
             return redirect()->route('users.index')->with('success', 'You have successfully deleted a user record');
         }
     }

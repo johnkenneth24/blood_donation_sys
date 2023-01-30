@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\BloodNegA;
 
-use Livewire\Component;
 use App\Models\Donor;
+use Livewire\Component;
+use App\Helpers\LogActivity;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class Export extends Component
@@ -28,21 +29,19 @@ class Export extends Component
             return back();
         }
 
-        $donor_blood = $donors->filter(function($donor){
+        $donor_blood = $donors->filter(function ($donor) {
             return $donor->blood_type == 'A-';
         });
 
         $resCount = $donor_blood->count();
 
-        if($resCount > 0)
-        {
+        if ($resCount > 0) {
             $templateProcessor->cloneRow('n', $resCount);
             $i = 1;
 
-            foreach ($donor_blood as $i => $donor)
-            {
+            foreach ($donor_blood as $i => $donor) {
                 $templateProcessor->setValue('n#' . ($i + 1), $i + 1);
-                $templateProcessor->setValue('name#' . ($i + 1), $donor->lastname);
+                $templateProcessor->setValue('name#' . ($i + 1), $donor->lastname . ', ' . $donor->firstname . ' ' . $donor->middlename);
                 $templateProcessor->setValue('gender#' . ($i + 1), $donor->gender);
                 $templateProcessor->setValue('age#' . ($i + 1), $donor->age);
                 $templateProcessor->setValue('address#' . ($i + 1), $donor->address);
@@ -50,6 +49,8 @@ class Export extends Component
                 $templateProcessor->setValue('blood_bag#' . ($i + 1), $donor->bag_blood);
             }
         }
+
+        LogActivity::addToLog('Exported Blood Type A- records');
 
         $filename = 'blood_neg_A-' . date('Y-m-d');
         $tempPath = 'reports/' . $filename . '.docx';
@@ -61,7 +62,6 @@ class Export extends Component
 
         $templateProcessor->saveAs(storage_path($tempPath));
         return response()->download(storage_path($tempPath));
-
     }
 
     public function render()

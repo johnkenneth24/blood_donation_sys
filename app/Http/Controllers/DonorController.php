@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Donor;
 // use App\Http\Requests\Donors\StoreRequest;
 // use Illuminate\Http\Client\Request;
-use App\Http\Requests\RegisterDonor\StoreRequest;
+use App\Helpers\LogActivity;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisteredNotification;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\RegisterDonor\StoreRequest;
 
 class DonorController extends Controller
 {
@@ -25,7 +26,7 @@ class DonorController extends Controller
 
     public function create()
     {
-        $bloodtypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'I dont know'];
+        $bloodtypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
         $gender = ['Male', 'Female'];
 
         return view('modules.register-donor.register', compact('bloodtypes', 'gender'));
@@ -52,6 +53,7 @@ class DonorController extends Controller
         ]);
 
         Mail::to($donor->email)->send(new RegisteredNotification($donor));
+        LogActivity::addToLog('Registered a new donor: ' . $donor->firstname . ' ' . $donor->lastname);
 
         return redirect()->route('donor.register')->with('success', 'Thank you for registering! We will contact you soon.');
     }
@@ -77,6 +79,8 @@ class DonorController extends Controller
             'donated_date' => $validated['donated_date'],
         ]);
 
+        LogActivity::addToLog('Updated donor status: ' . $donor->firstname . ' ' . $donor->lastname . ', added ' . $validated['bag_blood'] . ' bag/s of blood.');
+
         return redirect()->route('donor.index')->with('success', 'Donor status updated successfully!');
     }
 
@@ -85,6 +89,7 @@ class DonorController extends Controller
         $validated = request()->validate([
             'bag_blood' => 'required',
             'donated_date' => 'required',
+            'blood_type' => 'nullable',
         ]);
 
         $donor = Donor::find($id);
@@ -93,7 +98,10 @@ class DonorController extends Controller
             'status' => 'donated',
             'bag_blood' => $validated['bag_blood'],
             'donated_date' => $validated['donated_date'],
+            'blood_type' => $validated['blood_type'] ?? $donor->blood_type ?? 'A+',
         ]);
+
+        LogActivity::addToLog('Updated donor status: ' . $donor->firstname . ' ' . $donor->lastname . ', added ' . $validated['bag_blood'] . ' bag/s of blood.');
 
         return redirect()->route('donor.pending')->with('success', 'Donor status updated successfully!');
     }

@@ -111,6 +111,7 @@
                                  <option value="{{ $bloodtype }}" @selected(old('blood_type') == $bloodtype)>{{ $bloodtype }}
                                  </option>
                              @endforeach
+                             <option value="IDK" @selected(old('blood_type') == IDK)>I don't know</option>
                          </select>
                          @error('blood_type')
                              <div class="invalid-feedback">

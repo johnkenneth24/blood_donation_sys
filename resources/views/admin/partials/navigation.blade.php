@@ -51,6 +51,14 @@
                             <span class="menu-text">Users</span>
                         </a>
                     </li>
+
+                    <li class="menu-item {{ !request()->routeIs('logs.*') ?: 'menu-item-active' }}"
+                        aria-haspopup="true">
+                        <a href="{{ route('logs.log-activity') }}" class="menu-link">
+                            <i class="menu-icon flaticon2-user-1"></i>
+                            <span class="menu-text">History Logs</span>
+                        </a>
+                    </li>
                 @endif
 
             </ul>
