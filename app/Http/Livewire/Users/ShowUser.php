@@ -53,7 +53,7 @@ class ShowUser extends Component
         $this->resetInputFields();
         $this->emit('hideModal', '#create');
 
-        LogActivity::addToLog('Added a new User');
+        LogActivity::addToLog('Added a new User with name of ' . $this->name . ' !');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully added a new User']);
     }
 
@@ -72,7 +72,7 @@ class ShowUser extends Component
         $this->resetInputFields();
         $this->emit('hideModal', '#edit');
 
-        LogActivity::addToLog('Updated a User record');
+        LogActivity::addToLog('Updated the user record of ' . $this->name . ' !');
         $this->dispatchBrowserEvent('swalSuccess', ['message' => 'You have successfully updated a User record']);
     }
 
