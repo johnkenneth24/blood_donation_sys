@@ -76,6 +76,9 @@
                                 {{ Carbon\Carbon::parse($donor->donated_date)->format('m/d/Y') }}
                             </td>
                             <td>
+                                <button wire:click="certExport({{ $donor->id }})"  class="btn btn-icon btn-info btn-sm">
+                                        <i class="fas fa-cloud-download-alt"></i>
+                                </button>
                                 @if (Carbon\Carbon::parse($donor->donated_date)->addMonths(3)->isPast())
                                     <button data-toggle="modal" data-target="#setStatus{{ $donor->id }}"
                                         class="btn btn-icon btn-warning btn-sm">
@@ -99,7 +102,7 @@
                     @endforelse
                 </tbody>
             </table>
-            {!! $donors->appends(\Request::except('page'))->render() !!}
+            {{-- {!! $donors->appends(\Request::except('page'))->render() !!} --}}
         </div>
     </div>
 </div>

@@ -56,7 +56,7 @@
                         aria-haspopup="true">
                         <a href="{{ route('logs.log-activity') }}" class="menu-link">
                             <i class="menu-icon flaticon2-user-1"></i>
-                            <span class="menu-text">History Logs</span>
+                            <span class="menu-text text-nowrap">History Logs</span>
                         </a>
                     </li>
                 @endif
