@@ -6,6 +6,7 @@ use DB;
 use App\Models\Donor;
 use Livewire\Component;
 use App\Helpers\LogActivity;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class ShowDonors extends Component
 {
@@ -20,6 +21,7 @@ class ShowDonors extends Component
     public $donor_id;
 
     public $search;
+    public const TEMPLATE_PATH_CERT = 'docx/cert_donor.docx';
 
     protected $listeners = ['delete'];
 
@@ -131,6 +133,29 @@ class ShowDonors extends Component
             ->orWhere('lastname', 'like', '%' . $this->search . '%')
             ->orWhere(DB::raw("concat(firstname, ' ', lastname)"), 'like', '%' . $this->search . '%')
             ->get();
+    }
+
+    public function certExport($id)
+    {
+
+        $path = storage_path(self::TEMPLATE_PATH_CERT);
+        $templateProcessor = new TemplateProcessor($path);
+
+        $donors = Donor::find($id);
+        // dd($donors);
+
+        $templateProcessor->setValue('fullname', $donors->firstname. ' ' . $donors->lastname);
+        $templateProcessor->setValue('date', date('F d, Y'));
+
+        $filename = 'certificate_' . $donors->firstname . '_' . $donors->lastname;
+        $tempPath = 'reports/' . $filename . '.docx';
+
+        if (!file_exists(storage_path('reports'))) {
+            mkdir(storage_path('reports'), 0777, true);
+        }
+
+        $templateProcessor->saveAs(storage_path($tempPath));
+        return response()->download(storage_path($tempPath));
     }
 
     public function render()
