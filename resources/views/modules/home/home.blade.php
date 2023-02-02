@@ -25,7 +25,7 @@
                                 <i class="flaticon2-chat-1 text-primary"></i>
                             </span>
                             @if (count($upcoming) > 0)
-                                <h6 class="card-label mb-0">
+                                <h6 class="card-label mb-0 ps-2">
                                     UPCOMING EVENT/S ({{ count($upcoming) }})
                                 </h6>
                         </div>
@@ -136,23 +136,8 @@
         <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="card card-custom w-100">
                 <div  class="card-body">
-                    <form action="mailto:rhu_irosindistrict@gmail.com" target="_blank">
-                        <h5 class="card-title">Send us your enquiries</h5>
-                        <div class="mb-3">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                            <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    {{-- @livewire('feedback.sendfeed') --}}
+                    @livewire('feedback.feedback')
                 </div>
             </div>
         </div>

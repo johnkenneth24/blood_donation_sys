@@ -55,7 +55,7 @@ class DonorController extends Controller
         Mail::to($donor->email)->send(new RegisteredNotification($donor));
         LogActivity::addToLog('Registered a new donor: ' . $donor->firstname . ' ' . $donor->lastname);
 
-        return redirect()->route('donor.register')->with('success', 'Thank you for registering! We will contact you soon.');
+        return redirect()->route('donor.register')->with('success', 'Thank you for registering! You will receive email of confirmation.');
     }
 
     public function updateStatus(Donor $donor, $id)

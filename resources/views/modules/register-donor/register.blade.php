@@ -42,9 +42,7 @@
      <section id="login" class="container-fluid d-flex justify-content-center align-items-center">
          <div class="card mb-3 col-md-10">
              <div class="text-bg-danger p-3 ">
-                 <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5>
-                 <p class="card-text">After you submit the form you need to go to the RHU for further assessment and
-                     validation.</p>
+                 <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5> 
              </div>
              <x-success></x-success>
              <div class="card-body ">
@@ -111,7 +109,7 @@
                                  <option value="{{ $bloodtype }}" @selected(old('blood_type') == $bloodtype)>{{ $bloodtype }}
                                  </option>
                              @endforeach
-                             <option value="IDK" @selected(old('blood_type') == IDK)>I don't know</option>
+                             <option value="IDK" @selected(old('blood_type') == "IDK")>I don't know</option>
                          </select>
                          @error('blood_type')
                              <div class="invalid-feedback">

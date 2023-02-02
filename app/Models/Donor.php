@@ -34,7 +34,7 @@ class Donor extends Model
         'middlename',
         'age',
         'address',
-        'bloodtype',
+        'blood_type',
         'created_at',
         'updated_at',
 
