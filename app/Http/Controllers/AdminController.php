@@ -11,12 +11,12 @@ class AdminController extends Controller
     {
         $donors = Donor::all();
 
-        $donCount = $donors->count();
+        $donCount = $donors->where('status', 'donated')->count();
 
         $bloodCount = Donor::sum('bag_blood');
 
-        $male = $donors->where('gender', 'Male')->count();
-        $female = $donors->where('gender', 'Female')->count();
+        $male = $donors->where('gender', 'Male')->where('status', 'donated')->count();
+        $female = $donors->where('gender', 'Female')->where('status', 'donated')->count();
 
         $pA = $donors->where('blood_type', 'A+')->where('status', 'donated')->count();
         $pB = $donors->where('blood_type', 'B+')->where('status', 'donated')->count();
