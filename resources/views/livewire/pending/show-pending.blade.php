@@ -47,7 +47,7 @@
                         <th>@sortablelink('address', 'Address')</th>
                         <th>@sortablelink('age', 'Age')</th>
                         <th>Gender</th>
-                        <th>@sortablelink('bloodtype', 'Blood Type')</th>
+                        <th>@sortablelink('blood_type', 'Blood Type')</th>
                         <th>Contact No.</th>
                         <th class="text-center pr-0">Actions</th>
                     </tr>

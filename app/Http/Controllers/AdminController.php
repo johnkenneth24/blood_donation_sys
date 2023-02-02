@@ -18,14 +18,14 @@ class AdminController extends Controller
         $male = $donors->where('gender', 'Male')->count();
         $female = $donors->where('gender', 'Female')->count();
 
-        $pA = $donors->where('blood_type', 'A+')->count();
-        $pB = $donors->where('blood_type', 'B+')->count();
-        $pAB = $donors->where('blood_type', 'AB+')->count();
-        $pO = $donors->where('blood_type', 'O+')->count();
-        $nA = $donors->where('blood_type', 'A-')->count();
-        $nB = $donors->where('blood_type', 'B-')->count();
-        $nAB = $donors->where('blood_type', 'AB-')->count();
-        $nO = $donors->where('blood_type', 'O-')->count();
+        $pA = $donors->where('blood_type', 'A+')->where('status', 'donated')->count();
+        $pB = $donors->where('blood_type', 'B+')->where('status', 'donated')->count();
+        $pAB = $donors->where('blood_type', 'AB+')->where('status', 'donated')->count();
+        $pO = $donors->where('blood_type', 'O+')->where('status', 'donated')->count();
+        $nA = $donors->where('blood_type', 'A-')->where('status', 'donated')->count();
+        $nB = $donors->where('blood_type', 'B-')->where('status', 'donated')->count();
+        $nAB = $donors->where('blood_type', 'AB-')->where('status', 'donated')->count();
+        $nO = $donors->where('blood_type', 'O-')->where('status', 'donated')->count();
 
 
 
