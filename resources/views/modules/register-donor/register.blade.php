@@ -13,6 +13,8 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
      <link rel="shortcut icon" href="{{ asset('images/blood-alt.png') }}" type="image/x-icon" />
      <script src="https://kit.fontawesome.com/5d19900f91.js" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
  </head>
 
  <body id="landing">
@@ -42,7 +44,7 @@
      <section id="login" class="container-fluid d-flex justify-content-center align-items-center">
          <div class="card mb-3 col-md-10">
              <div class="text-bg-danger p-3 ">
-                 <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5> 
+                 <h5 class="card-title">FILL OUT THIS FORM TO BE A DONOR</h5>
              </div>
              <x-success></x-success>
              <div class="card-body ">
@@ -158,18 +160,17 @@
 
                      <div class="col-12">
                          <div class="form-check">
-                             <input class="form-check-input" name="terms" type="checkbox" value="true" checked
+                             <input class="form-check-input" name="terms" type="checkbox" value="true"
                                  id="gridCheck" required>
                              <label class="form-check-label" for="gridCheck">
                                  I agree to the <a href="#" data-bs-toggle="modal"
                                      data-bs-target="#staticBackdrop" class="text-black-50">terms and
                                      conditions</a>.
-                                 <span>*</span>
                              </label>
                          </div>
                      </div>
                      <div class="col-md-12">
-                         <button type="submit" class="col-md-12 btn btn-primary">SUBMIT</button>
+                         <button type="submit" id="submit_reg" class="col-md-12 btn btn-primary" disabled>SUBMIT</button>
                      </div>
                  </form>
              </div>
@@ -187,62 +188,62 @@
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body text-justify">
-                     <li>
+                     <p>
                          By Agreeing to donate blood through our Blood Donation Management System, you confirm that you
                          are in good health and have not had any recent illnesses or diseases.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You confirm that you are not currently taking any medications that would prevent you from being
                          able to donate blood.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You confirm that you have not recently traveled to any locations with a high risk of infectious
                          diseases.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You Understand that the blood donation process involves a brief physical examination and a
                          small sample of your blood will be taken for testing.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that the blood donation process may cause some discomfort, such as slight
                          dizziness or bruising at the puncture site.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that the donate blood will be use to help those in need and may be distribute to
                          various medical facilities.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You Understand that your Personal information will be kept confidential and will only be used
                          for the purpose of blood donation.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that you have the right to change your mind and stop the donation process any
                          time.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that by donating blood you are saving lives and you are helping people in need.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that you are encouraged to return for the blood donation after a period of 56
                          days.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that our Blood Donation Management System is not responsible for any adverse
                          reactions or complications that my occur as a result of the blood donation process.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that our Blood Donation Management System is not responsible for any errors or
                          inaccuracies in the information provided by you during the donation process.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that by agreeing to these terms and conditions, you are giving your consent to
                          the Blood Donation Management System to collect, store and use your personal information for
                          the purposes of blood donation management and operation of the system.
-                     </li>
-                     <li>
+                     </p>
+                     <p>
                          You understand that you have the right to access, correct and delete your personal information
                          stored by the Blood Donation Management System.
-                     </li>
+                     </p>
 
                  </div>
                  <div class="modal-footer">
@@ -256,5 +257,16 @@
          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
      </script>
  </body>
-
  </html>
+
+
+ <script>
+    $("input[type=checkbox]").change(function() {
+  if ($(this).is(":checked")) {
+    $("#submit_reg").removeAttr("disabled");
+  } else {
+    $("#submit_reg").attr("disabled", "disabled");
+  }
+});
+
+ </script>
