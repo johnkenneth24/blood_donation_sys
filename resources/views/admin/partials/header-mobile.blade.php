@@ -2,6 +2,7 @@
     <a href="">
         <img alt="Logo" class="w-45px" src="{{ asset('images/blood-drop.png') }}" />
     </a>
+
     <div class="d-flex align-items-center">
         <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
             <span></span>
