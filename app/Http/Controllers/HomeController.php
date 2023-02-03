@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUsMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -14,20 +15,30 @@ class HomeController extends Controller
         return view('modules.home.home', compact('events'));
     }
 
-    // public function sendFeedback(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required|email',
-    //         'message' => 'required',
-    //     ]);
+    public function contact(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'message' => ['required'],
+        ]);
 
-    //     Mail::send('modules.home.home', $data, function($message) use ($data) {
-    //         $message->to('teamdev2023@gmail.com', 'Recipient Name')
-    //             ->subject('New Feedback');
-    //         $message->from($data['email'], $data['name']);
-    //     });
+        // dd($validatedData);
+        Mail::to('teamdev2023@gmail.com')->send(new ContactUsMail($request->all()));
 
-    //     return redirect()->back()->with('message', 'Thanks for your feedback!');
-    // }
+        return back()->with('message', 'Your message was sent successfully!');
+    }
+
+    public function send(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        Mail::to(config('mail.from.address'))->send(new ContactUsMail($validatedData));
+
+        return back()->with('success', 'Your message has been sent successfully.');
+    }
 }

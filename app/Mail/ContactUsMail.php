@@ -9,24 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class FeedbackReceived extends Mailable
+class ContactUsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
-    public $email;
-    public $message;
+
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $message)
+    public function __construct($data)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->message = $message;
+        $this->data = $data;
     }
 
     /**
@@ -36,7 +33,9 @@ class FeedbackReceived extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.feedback');
+        return $this->from($this->data['email'], $this->data['name'])
+            ->subject('New Contact Us Message')
+            ->view('emails.contactus')
+            ->with('data', $this->data);
     }
 }
-
