@@ -20,7 +20,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/read-event', [HomeController::class, 'blog'])->name('blog');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/verify', [AuthController::class, 'verify'])->name('auth.verify');
-    // Route::post('/feedback', [HomeController::class, 'sendFeedback'])->name('send_feedback');
+    Route::post('/contact', [HomeController::class, 'contact'])->name('contact.submit');
 
     Route::controller(DonorController::class)->group(function () {
         Route::group([
@@ -32,8 +32,6 @@ Route::middleware('guest')->group(function () {
     });
 
     Route::get('view/{id}', [EventController::class, 'view'])->name('event.view');
-
-
 });
 
 

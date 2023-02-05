@@ -8,7 +8,7 @@
     <section id="landingHome" class="container-fluid d-flex justify-content-center align-items-center">
         <div class="row">
             <div data-aos="fade-down" data-aos-duration="1500" class="text-landing">
-                <h1  class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
+                <h1 class="text-center">BLOOD DONATION <br> MANAGEMENT <br> SYSTEM</h1>
                 <blockquote class="text-center">"Join Us And Save Lives!"</blockquote>
             </div>
 
@@ -78,7 +78,8 @@
             @forelse ($events as $event)
                 <div class="col-md-3 d-flex justify-content-center">
                     <div data-aos="flip-left" data-aos-duration="1500" class="card mb-2 card-custom" style="width: 300px;">
-                        <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;" alt="...">
+                        <img src="/image/{{ $event->image }}" class="card-img-top" style="width: 100%; height: 180px;"
+                            alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ $event->title }}</h5>
                             <h6 class="text-center">
@@ -94,7 +95,7 @@
                                 {{ date('h:i A', strtotime($event->time)) }} |
                                 {{ date('F d, Y', strtotime($event->date)) }}
                             </h6>
-                            <p class="card-text">{{ Str::words($event->description, 5, $end='...') }}</p>
+                            <p class="card-text">{{ Str::words($event->description, 5, $end = '...') }}</p>
                             <a href="{{ route('event.view', $event->id) }}">Read More...</a>
                         </div>
                     </div>
@@ -133,11 +134,32 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
             <div data-aos="zoom-in-up" data-aos-duration="1500" class="card card-custom w-100">
-                <div  class="card-body">
-                    {{-- @livewire('feedback.sendfeed') --}}
-                    @livewire('feedback.feedback')
+                <div class="card-body">
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                    <form method="post" action="{{ route('contact.submit') }}">
+                        @csrf
+                        <h3 class="text-center text-muted">Contact Us</h3>
+                        <div class="form-group mb-2">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Message</label>
+                            <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
