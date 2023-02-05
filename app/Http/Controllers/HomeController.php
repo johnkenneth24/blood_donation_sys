@@ -24,7 +24,7 @@ class HomeController extends Controller
         ]);
 
         // dd($validatedData);
-        Mail::to('teamdev2023@gmail.com')->send(new ContactUsMail($request->all()));
+        Mail::to('teamdeveloper2023@gmail.com')->send(new ContactUsMail($request->all()));
 
         return back()->with('message', 'Your message was sent successfully!');
     }
